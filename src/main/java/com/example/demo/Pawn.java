@@ -25,5 +25,10 @@ public class Pawn extends Image {
         this.row = row;
         this.color = color;
         this.number = number;
+        setAlt(String.valueOf(number));
+        setClassName("field");
+        setId(String.valueOf(number));
+        setWidth(null);
+        setHeight(null);
     }
 }

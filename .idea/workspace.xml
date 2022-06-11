@@ -4,22 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8c8979c-1c5d-4ca5-90e7-38440b36595b" name="Changes" comment="first">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/Field.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/GameBoard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/LoginView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/Pawn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/SecurityConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/SecurityService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/48px-BlueSquare.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/48px-WhiteSquare.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/red-dot.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/white-dot.png" afterDir="false" />
+    <list default="true" id="f8c8979c-1c5d-4ca5-90e7-38440b36595b" name="Changes" comment="board in progress">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/MainView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/Pawn.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +104,7 @@
       <updated>1653138210559</updated>
       <workItem from="1653138212648" duration="6215000" />
       <workItem from="1653151931781" duration="4025000" />
-      <workItem from="1654853308112" duration="25152000" />
+      <workItem from="1654853308112" duration="27763000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1653139496704</created>
@@ -132,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653139662854</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="board in progress">
+      <created>1654962075437</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1654962075437</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,7 +146,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first" />
-    <option name="LAST_COMMIT_MESSAGE" value="first" />
+    <MESSAGE value="board in progress" />
+    <option name="LAST_COMMIT_MESSAGE" value="board in progress" />
   </component>
   <component name="com.vaadin.designer2.intellij.settings.SizePresetsSettingsComponent">
     <option name="sizePresets">

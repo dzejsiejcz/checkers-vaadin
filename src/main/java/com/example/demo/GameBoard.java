@@ -1,15 +1,14 @@
 package com.example.demo;
 
 import com.github.appreciated.css.grid.GridLayoutComponent;
-import com.github.appreciated.css.grid.sizes.Length;
 import com.github.appreciated.layout.FluentGridLayout;
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.BoxSizing;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
+import com.vaadin.flow.theme.Theme;
+import com.vaadin.flow.theme.lumo.Lumo;
 
-import java.util.stream.Stream;
 
 @Route("game")
 @AnonymousAllowed
@@ -27,7 +26,7 @@ public class GameBoard extends VerticalLayout {
                 .withSpacing(true)
                 .withOverflow(GridLayoutComponent.Overflow.VISIBLE);
 
-        int pawnNumber = 0;
+
         for (int col = 1; col < 9; col++) {
             for (int row = 1; row < 9; row++) {
                 String color;
@@ -36,15 +35,25 @@ public class GameBoard extends VerticalLayout {
                 } else {
                     color = COLOR_WHITE;
                 }
-
                 Field field = new Field(color);
                 layout.withRowAndColumn(field, col, row);
+            }
+        }
 
+        layout.setBoxSizing(BoxSizing.CONTENT_BOX);
+        layout.withSpacing(false);
+        add(layout);
+
+        int pawnNumber = 0;
+        for (int col = 1; col < 9; col++) {
+            for (int row = 1; row < 9; row++) {
                 Pawn pawn;
                 if (row < 4 && ((col + row) % 2) != 0) {
                     pawn = new Pawn(col, row, COLOR_RED, pawnNumber);
                     pawnNumber++;
                     layout.withRowAndColumn(pawn, row, col);
+                    layout.setColumnAlign(pawn, GridLayoutComponent.ColumnAlign.CENTER);
+                    layout.setRowAlign(pawn, GridLayoutComponent.RowAlign.CENTER);
 
                 }
 
@@ -52,16 +61,11 @@ public class GameBoard extends VerticalLayout {
                     pawn = new Pawn(col, row, COLOR_WHITE, pawnNumber);
                     pawnNumber++;
                     layout.withRowAndColumn(pawn, row, col);
+                    layout.setColumnAlign(pawn, GridLayoutComponent.ColumnAlign.CENTER);
+                    layout.setRowAlign(pawn, GridLayoutComponent.RowAlign.CENTER);
                 }
-
             }
         }
-
-        //setSizeFull();
-
-        layout.setBoxSizing(BoxSizing.CONTENT_BOX);
-        layout.withSpacing(false);
-        add(layout);
     }
 }
 
