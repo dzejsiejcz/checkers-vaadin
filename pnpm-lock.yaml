@@ -2,6 +2,7 @@ dependencies:
   '@polymer/iron-icon': 3.0.1
   '@polymer/iron-iconset-svg': 3.0.1
   '@polymer/iron-list': 3.1.0
+  '@polymer/iron-media-query': 3.0.1
   '@polymer/iron-meta': 3.0.1
   '@polymer/iron-resizable-behavior': 3.0.1
   '@polymer/polymer': 3.4.1
@@ -10,7 +11,7 @@ dependencies:
   '@vaadin/avatar': 23.0.7
   '@vaadin/avatar-group': 23.0.7
   '@vaadin/board': 23.0.7
-  '@vaadin/bundles': 23.0.7_85909938d2e014eebc458c84800d3d6f
+  '@vaadin/bundles': 23.0.7_db71af151c0086fbd108cb47fdacc5e0
   '@vaadin/button': 23.0.7
   '@vaadin/charts': 23.0.7
   '@vaadin/checkbox': 23.0.7
@@ -113,6 +114,7 @@ dependencies:
   '@vaadin/virtual-list': 23.0.7
   construct-style-sheets-polyfill: 3.0.4
   date-fns: 2.28.0
+  element-match-media: 0.0.3
   lit: 2.1.4
 devDependencies:
   chokidar: 3.5.3
@@ -1456,6 +1458,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-Eiv6xd3h3oPmn8SXFntXVfC3ZnegH+KHAxiKLKcOASFSRY3mHnr2AdcnExUJ9ItoCMA5UzKaM/0U22eWzGERtA==
+  /@polymer/iron-media-query/3.0.1:
+    dependencies:
+      '@polymer/polymer': 3.4.1
+    dev: false
+    resolution:
+      integrity: sha512-czUX1pm1zfmfcZtq5J57XFkcobBv08Y50exp0/3v8Bos5VL/jv2tU0RwiTfDBxUMhjicGbgwEBFQPY2V5DMzyw==
   /@polymer/iron-meta/3.0.1:
     dependencies:
       '@polymer/polymer': 3.4.1
@@ -1755,10 +1763,11 @@ packages:
     dev: false
     resolution:
       integrity: sha512-2/1bNMq/4evPBH499G4g6i9DRQYcdwOtNFIHrrNP8yv37MiknUY3KSe8TKbl8UbToEqFr5eeHMFzXi11wF7UvA==
-  /@vaadin/bundles/23.0.7_85909938d2e014eebc458c84800d3d6f:
+  /@vaadin/bundles/23.0.7_db71af151c0086fbd108cb47fdacc5e0:
     dependencies:
       '@polymer/iron-icon': 3.0.1
       '@polymer/iron-iconset-svg': 3.0.1
+      '@polymer/iron-media-query': 3.0.1
       '@polymer/iron-meta': 3.0.1
       '@polymer/polymer': 3.4.1
       '@vaadin/accordion': 23.0.7
@@ -4805,6 +4814,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-0Rcpald12O11BUogJagX3HsCN3FE83DSqWjgXoHo5a72KUKMSfI39XBgJpgNNxS9fuGzytaFjE06kZkiVFy2qA==
+  /element-match-media/0.0.3:
+    dev: false
+    resolution:
+      integrity: sha512-RODBFq6pz6NGmeOza8CfjSgzdfBvb/d9+qJVR9IY1580s11H9nFDU5XjR/MYywmEVRcO/wx8+nmvBhjj5n8igA==
   /elliptic/6.5.4:
     dependencies:
       bn.js: 4.12.0
@@ -9043,6 +9056,7 @@ specifiers:
   '@polymer/iron-icon': 3.0.1
   '@polymer/iron-iconset-svg': 3.0.1
   '@polymer/iron-list': 3.1.0
+  '@polymer/iron-media-query': 3.0.1
   '@polymer/iron-meta': 3.0.1
   '@polymer/iron-resizable-behavior': 3.0.1
   '@polymer/polymer': 3.4.1
@@ -9157,6 +9171,7 @@ specifiers:
   construct-style-sheets-polyfill: 3.0.4
   css-loader: 5.2.7
   date-fns: 2.28.0
+  element-match-media: 0.0.3
   esbuild-loader: 2.15.1
   extra-watch-webpack-plugin: 1.0.3
   extract-loader: 5.1.0

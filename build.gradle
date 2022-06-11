@@ -37,6 +37,11 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+	implementation 'org.springframework.boot:spring-boot-starter-security:2.6.7'
+
+	// https://mvnrepository.com/artifact/com.github.appreciated/vaadin-css-grid
+	implementation group: 'com.github.appreciated', name: 'vaadin-css-grid', version: '2.0.0'
+
 }
 
 dependencyManagement {

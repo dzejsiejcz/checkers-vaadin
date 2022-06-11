@@ -6,6 +6,7 @@
       "@polymer/iron-icon": "3.0.1",
       "@polymer/iron-iconset-svg": "3.0.1",
       "@polymer/iron-list": "3.1.0",
+      "@polymer/iron-media-query": "3.0.1",
       "@polymer/iron-meta": "3.0.1",
       "@polymer/iron-resizable-behavior": "3.0.1",
       "@polymer/polymer": "3.4.1",
@@ -116,6 +117,7 @@
       "@vaadin/virtual-list": "23.0.7",
       "construct-style-sheets-polyfill": "3.0.4",
       "date-fns": "2.28.0",
+      "element-match-media": "0.0.3",
       "lit": "2.1.4"
     },
     "devDependencies": {
@@ -140,12 +142,13 @@
       "workbox-precaching": "6.5.0",
       "workbox-webpack-plugin": "6.5.0"
     },
-    "hash": "f55c3b964045b6140ad2b83e0fc825159f5a3c99e6d07dc207aba1aa0a5d3179"
+    "hash": "81b0002159a8d155beac3459d451fc1417e768a2856a13a493874912769e82fd"
   },
   "dependencies": {
     "@polymer/iron-icon": "3.0.1",
     "@polymer/iron-iconset-svg": "3.0.1",
     "@polymer/iron-list": "3.1.0",
+    "@polymer/iron-media-query": "3.0.1",
     "@polymer/iron-meta": "3.0.1",
     "@polymer/iron-resizable-behavior": "3.0.1",
     "@polymer/polymer": "3.4.1",
@@ -257,6 +260,7 @@
     "@vaadin/virtual-list": "23.0.7",
     "construct-style-sheets-polyfill": "3.0.4",
     "date-fns": "2.28.0",
+    "element-match-media": "0.0.3",
     "lit": "2.1.4"
   },
   "devDependencies": {
