@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.checkers.web.views;
 
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.login.LoginForm;

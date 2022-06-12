@@ -1,5 +1,6 @@
-package com.example.demo;
+package com.checkers.web.security;
 
+import com.checkers.web.views.LoginView;
 import com.vaadin.flow.spring.security.VaadinWebSecurityConfigurerAdapter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

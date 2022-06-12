@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.checkers.web.security;
 
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.server.VaadinServletRequest;

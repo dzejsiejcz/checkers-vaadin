@@ -16,7 +16,7 @@ defaultTasks("clean", "build")
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = "11"
 
 repositories {
 	mavenCentral()
@@ -42,6 +42,10 @@ dependencies {
 	// https://mvnrepository.com/artifact/com.github.appreciated/vaadin-css-grid
 	implementation group: 'com.github.appreciated', name: 'vaadin-css-grid', version: '2.0.0'
 
+	// https://mvnrepository.com/artifact/org.projectlombok/lombok
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
+
+
 }
 
 dependencyManagement {
@@ -60,3 +64,4 @@ test {
 vaadin {
 	pnpmEnable = true
 }
+targetCompatibility = JavaVersion.VERSION_11

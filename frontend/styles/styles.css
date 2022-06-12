@@ -1,0 +1,34 @@
+.blue-field {
+    background-color: blue;
+    height: 100px;
+    width: 100px;
+}
+
+.white-field {
+    background-color: white;
+    height: 100px;
+    width: 100px;
+}
+
+.red-pawn {
+    background-color: red;
+    /*stroke-width: 3px;*/
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: x-small;
+    text-align: center;
+}
+
+.white-pawn {
+    background-color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: x-small;
+    text-align: center;
+}
+
+.board {
+    border: black solid;
+}

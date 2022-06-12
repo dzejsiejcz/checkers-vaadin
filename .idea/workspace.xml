@@ -4,10 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8c8979c-1c5d-4ca5-90e7-38440b36595b" name="Changes" comment="board in progress">
+    <list default="true" id="f8c8979c-1c5d-4ca5-90e7-38440b36595b" name="Changes" comment="board in progress - alignment">
+      <change afterPath="$PROJECT_DIR$/frontend/frontend/themes/my-theme/document.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/styles/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/StateOfGame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/Turn.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/model/Coordinates.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/model/Field.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/model/Pawn.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/utils/Constants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/utils/MoveType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/utils/PawnType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/GameBoardView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/blue-square-100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/icons/white-square-100.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/Pawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/AppShell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/AppShell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/DemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/CheckersApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Field.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/GameBoard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/GreetService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/MainView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Pawn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/security/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/SecurityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/security/SecurityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/demo/DemoApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/checkers/web/CheckersAppTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +59,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -74,8 +100,8 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.0",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.30229884",
     "spring.configuration.checksum": "298bc24fd9c81ba6b91ee58a56745324"
   }
@@ -85,7 +111,14 @@
       <recent name="$PROJECT_DIR$/src/main/resources/icons" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.CheckersApp">
+    <configuration name="CheckersApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
+      <module name="checkers-vadin.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.checkers.web.CheckersApp" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="checkers-vadin.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.demo.DemoApplication" />
@@ -93,6 +126,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.CheckersApp" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -104,7 +142,7 @@
       <updated>1653138210559</updated>
       <workItem from="1653138212648" duration="6215000" />
       <workItem from="1653151931781" duration="4025000" />
-      <workItem from="1654853308112" duration="27763000" />
+      <workItem from="1654853308112" duration="62974000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1653139496704</created>
@@ -127,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654962075437</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="board in progress - alignment">
+      <created>1654964992422</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1654964992422</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,7 +192,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first" />
     <MESSAGE value="board in progress" />
-    <option name="LAST_COMMIT_MESSAGE" value="board in progress" />
+    <MESSAGE value="board in progress - alignment" />
+    <option name="LAST_COMMIT_MESSAGE" value="board in progress - alignment" />
   </component>
   <component name="com.vaadin.designer2.intellij.settings.SizePresetsSettingsComponent">
     <option name="sizePresets">
