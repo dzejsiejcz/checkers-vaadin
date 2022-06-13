@@ -102,9 +102,12 @@ public class GameBoardView extends VerticalLayout {
                             if (moveType == MoveType.NORMAL) {
                                 fieldOldParent.remove(pawnDragged);
                                 fieldNewParent.add(pawnDragged);
-
+                                pawnDragged.setCol(finalCol);
+                                pawnDragged.setRow(finalRow);
+                                String resultOfMove = doesMovementSummary(pawnDragged, false);
                                 System.out.println("cel: "+ finalRow + finalCol);
-                                System.out.println(doesMovementSummary(pawnDragged, false));
+                                System.out.println(resultOfMove);
+
                             } else if (moveType == MoveType.KILLING) {
                                 fieldOldParent.remove(pawnDragged);
                                 fieldNewParent.add(pawnDragged);
@@ -114,8 +117,11 @@ public class GameBoardView extends VerticalLayout {
                                 int neighborRow = (finalRow + pawnDragged.getCol()) / 2;
                                 Field beatingField = fields[neighborCol][neighborRow];
                                 beatingField.removeAll();
-                                System.out.println(doesMovementSummary(pawnDragged, true));
+                                String resultOfMove = doesMovementSummary(pawnDragged, true);
+                                System.out.println(resultOfMove);
+
                             }
+
                         }
                     });
                 }
