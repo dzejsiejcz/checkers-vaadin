@@ -13,6 +13,7 @@ import com.github.appreciated.layout.FluentGridLayout;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dnd.*;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.BoxSizing;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
@@ -61,9 +62,22 @@ public class GameBoardView extends VerticalLayout {
                     color = COLOR_FIELD_WHITE;
                 }
 
+
                 Field field = new Field(col, row, color);
                 fields[col][row] = field;
                 Pawn pawn = null;
+
+                if (row == 0 ) {
+                    Label colDescription = new Label(""+col);
+                    Label rowDescription = new Label(""+ col);
+                    colDescription.getStyle().set("text-align", "center");
+                    rowDescription.getStyle().set("margin", "auto");
+                    rowDescription.getStyle().set("padding", "5px");
+                    layout.withRowAndColumn(colDescription, 9, col+1);
+                    layout.withRowAndColumn(rowDescription, col+1, 9);
+                }
+
+
 
                 if (row < 3 && ((col + row) % 2) != 0) {
                     pawn = new Pawn(col, row, RED, pawnNumber);
