@@ -20,10 +20,29 @@ public class Field extends VerticalLayout {
 
         setWidth("100");
         setHeight("100");
-        //add(new Label("col: " + col + " row: "+ row));
     }
 
     public String getColor() {
         return color;
+    }
+
+    public int getCol() {
+        return col;
+    }
+
+    public void setCol(int col) {
+        this.col = col;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }

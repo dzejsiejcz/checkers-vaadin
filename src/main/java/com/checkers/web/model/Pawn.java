@@ -2,13 +2,10 @@ package com.checkers.web.model;
 
 import com.checkers.web.utils.PawnType;
 import com.vaadin.flow.component.html.Div;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.checkers.web.utils.Constants.COLOR_PAWN_RED;
 
 public class Pawn extends Div {
 
@@ -42,9 +39,7 @@ public class Pawn extends Div {
         setText(String.valueOf(number));
 
         setId(String.valueOf(number));
-        this.addClickListener(event -> {
-            System.out.println("COL: "+ col + " ROW: " + row);
-        });
+        this.addClickListener(event -> System.out.println("COL: "+ col + " ROW: " + row));
     }
 
     public void setPossiblePositionAfterBeating(int col, int row) {

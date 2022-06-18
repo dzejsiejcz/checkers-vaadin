@@ -45,8 +45,6 @@ public class StateOfGame {
         Collections.sort(whites);
         minRowOfReds = reds.get(0);
         maxRowOfWhites = whites.get(whites.size() - 1);
-        //System.out.println("min row reds: " + minRowOfReds);
-        //System.out.println("max row whites: " + maxRowOfWhites);
 
         if (maxRowOfWhites < minRowOfReds - 1) {
             isGame = false;

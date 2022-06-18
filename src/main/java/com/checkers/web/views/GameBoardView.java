@@ -33,7 +33,7 @@ public class GameBoardView extends VerticalLayout {
 
     public static User userRed = new User(Constants.reds, RED, false);
     public static User userWhite = new User(Constants.whites, WHITE, false);
-    public static Field fields[][] = new Field[WIDTH][HEIGHT];
+    public static Field[][] fields = new Field[WIDTH][HEIGHT];
     public static Turn turn = new Turn();
     public static StateOfGame game = new StateOfGame();
 
@@ -52,6 +52,7 @@ public class GameBoardView extends VerticalLayout {
 
         int pawnNumber = 0;
 
+        //building board
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
 
@@ -61,7 +62,6 @@ public class GameBoardView extends VerticalLayout {
                 } else {
                     color = COLOR_FIELD_WHITE;
                 }
-
 
                 Field field = new Field(col, row, color);
                 fields[col][row] = field;
@@ -77,8 +77,6 @@ public class GameBoardView extends VerticalLayout {
                     layout.withRowAndColumn(rowDescription, col+1, 9);
                 }
 
-
-
                 if (row < 3 && ((col + row) % 2) != 0) {
                     pawn = new Pawn(col, row, RED, pawnNumber);
                 }
@@ -92,7 +90,7 @@ public class GameBoardView extends VerticalLayout {
                     DragSource<Div> pawnDragSource = DragSource.create(pawn);
                     pawnDragSource.addDragStartListener((DragStartEvent<Div> event) -> {
                         event.setDragData(rowDragged+colDragged);
-                        System.out.println("zrodlo field "+rowDragged+colDragged);
+                        System.out.println("source field "+rowDragged+colDragged);
                     });
 
                     field.add(pawn);
@@ -101,41 +99,38 @@ public class GameBoardView extends VerticalLayout {
             }
         }
 
+        //creating pawns
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
-                int finalRow = row;
-                int finalCol = col;
-                Field fieldNewParent = fields[finalCol][finalRow];
+
+                Field fieldNewParent = fields[col][row];
                 if (fieldNewParent.getColor().equals(COLOR_FIELD_BLUE)){
+
                     DropTarget.create(fieldNewParent).addDropListener((DropEvent<Field> event) -> {
                         if (event.getDragSourceComponent().isPresent() && fieldNewParent.getComponentCount()==0) {
                             Pawn pawnDragged = (Pawn) event.getDragSourceComponent().get();
-                            Field fieldOldParent = (Field) pawnDragged.getParent().get();
 
-                            MoveType moveType = Controller.INSTANCE.checkMove(pawnDragged, finalRow, finalCol);
+                            MoveType moveType = Controller.INSTANCE.checkMove(pawnDragged, fieldNewParent.getRow(), fieldNewParent.getCol());
                             if (moveType == MoveType.NORMAL) {
-                                fieldOldParent.remove(pawnDragged);
-                                fieldNewParent.add(pawnDragged);
-                                pawnDragged.setCol(finalCol);
-                                pawnDragged.setRow(finalRow);
+
+                                move(pawnDragged, fieldNewParent);
                                 String resultOfMove = doesMovementSummary(pawnDragged, false);
-                                System.out.println("cel: "+ finalRow + finalCol);
+
+                                System.out.println("destination field: "+ fieldNewParent.getRow() + fieldNewParent.getCol());
                                 System.out.println(resultOfMove);
 
                             } else if (moveType == MoveType.KILLING) {
-                                fieldOldParent.remove(pawnDragged);
-                                fieldNewParent.add(pawnDragged);
-                                pawnDragged.setCol(finalCol);
-                                pawnDragged.setRow(finalRow);
-                                int neighborCol = (finalCol + pawnDragged.getCol()) / 2;
-                                int neighborRow = (finalRow + pawnDragged.getCol()) / 2;
+
+                                int neighborCol = (fieldNewParent.getCol() + pawnDragged.getCol()) / 2;
+                                int neighborRow = (fieldNewParent.getRow() + pawnDragged.getRow()) / 2;
+
                                 Field beatingField = fields[neighborCol][neighborRow];
                                 beatingField.removeAll();
+                                move(pawnDragged, fieldNewParent);
+
                                 String resultOfMove = doesMovementSummary(pawnDragged, true);
                                 System.out.println(resultOfMove);
-
                             }
-
                         }
                     });
                 }
@@ -143,6 +138,13 @@ public class GameBoardView extends VerticalLayout {
         }
     }
 
+    private void move(Pawn pawnDragged, Field fieldNewParent) {
+        Field fieldOldParent = (Field) pawnDragged.getParent().get();
+        fieldOldParent.remove(pawnDragged);
+        fieldNewParent.add(pawnDragged);
+        pawnDragged.setCol(fieldNewParent.getCol());
+        pawnDragged.setRow(fieldNewParent.getRow());
+    }
 }
 
 

@@ -27,7 +27,6 @@ public class Controller {
         int oldCol = pawn.getCol();
         int oldRow = pawn.getRow();
 
-
         /*
          * whose turn?
          */
@@ -38,18 +37,15 @@ public class Controller {
         /*
          *  check possibility of beating, if possible, user must beat
          */
-        Coordinates checkingFieldAfterBeat = new Coordinates(newCol, newRow);
-        //System.out.println("beating?: " + pawn.canKill());
+        Coordinates checkingFieldAfterBeat = new Coordinates(newRow, newCol);
         if (checkBeatingForGivenPawn(pawn)) {
             for (Coordinates currentField : pawn.getFieldsAfterBeats()) {
-                if (currentField.getColNumber() == checkingFieldAfterBeat.getColNumber() &&
-                        currentField.getRowNumber() == checkingFieldAfterBeat.getRowNumber()) {
+                if (currentField.getColNumber() == checkingFieldAfterBeat.getColNumber() && currentField.getRowNumber() == checkingFieldAfterBeat.getRowNumber()) {
                     return KILLING;
                 }
             }
             return FORBIDDEN;
         }
-
 
         /*
          *  check right direction of move, except beating
@@ -73,9 +69,7 @@ public class Controller {
         }
 
         return FORBIDDEN;
-
     }
-
 
     public static boolean checkBeatingForGivenPawn(Pawn checkingPawn) {
         boolean possible = false;
@@ -120,7 +114,6 @@ public class Controller {
                         PawnType neighborType = neighborPawn.getType();
                         if (neighborType != pawnType) {
                             checkingPawn.setPossiblePositionAfterBeating(locationAfterBeatCol, locationAfterBeatRow);
-                            //System.out.println("to kill: " + neighbor.getPawn().getPawnNumber());
                             possible = true;
                         }
                     }
@@ -159,7 +152,6 @@ public class Controller {
                 response = true;
             }
         }
-        //System.out.println("Pawn doesn't have anything to kill");
         return response;
     }
 
@@ -201,7 +193,5 @@ public class Controller {
 
         return turn.switchTurn();
     }
-
-
 
 }
