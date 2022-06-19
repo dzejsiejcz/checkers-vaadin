@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8c8979c-1c5d-4ca5-90e7-38440b36595b" name="Changes" comment="bug - when killing">
+    <list default="true" id="f8c8979c-1c5d-4ca5-90e7-38440b36595b" name="Changes" comment="logout">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/MainLayout.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/StateOfGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/StateOfGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/styles/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/model/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/model/Field.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/model/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/model/Pawn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/GameBoardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/GameBoardView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/MainView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +124,7 @@
       <workItem from="1653138212648" duration="6215000" />
       <workItem from="1653151931781" duration="4025000" />
       <workItem from="1654853308112" duration="67795000" />
-      <workItem from="1655570228573" duration="5898000" />
+      <workItem from="1655570228573" duration="14750000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1653139496704</created>
@@ -172,7 +175,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655150509462</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="movement">
+      <created>1655583947875</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1655583947875</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,7 +205,9 @@
     <MESSAGE value="board in progress - alignment" />
     <MESSAGE value="building movement - in progress" />
     <MESSAGE value="bug - when killing" />
-    <option name="LAST_COMMIT_MESSAGE" value="bug - when killing" />
+    <MESSAGE value="movement" />
+    <MESSAGE value="logout" />
+    <option name="LAST_COMMIT_MESSAGE" value="logout" />
   </component>
   <component name="com.vaadin.designer2.intellij.settings.SizePresetsSettingsComponent">
     <option name="sizePresets">

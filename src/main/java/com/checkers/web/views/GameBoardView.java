@@ -19,14 +19,17 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 
+import javax.annotation.security.PermitAll;
+
 import static com.checkers.web.logic.Controller.doesMovementSummary;
 import static com.checkers.web.utils.Constants.*;
 import static com.checkers.web.utils.PawnType.RED;
 import static com.checkers.web.utils.PawnType.WHITE;
 
 
-@Route("game")
-@AnonymousAllowed
+@Route(value = "game", layout = MainLayout.class)
+//@AnonymousAllowed
+@PermitAll
 @CssImport("./styles/styles.css")
 public class GameBoardView extends VerticalLayout {
 

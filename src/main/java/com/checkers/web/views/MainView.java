@@ -10,33 +10,23 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.security.PermitAll;
 import java.io.Serializable;
 
 /**
  * The main view contains a button and a click listener.
  */
-@Route("")
+@Route(value = "", layout = MainLayout.class)
 @CssImport("./styles/shared-styles.css")
 @CssImport(value = "./styles/vaadin-text-field-styles.css", themeFor = "vaadin-text-field")
-@AnonymousAllowed
+//@AnonymousAllowed
+@PermitAll
 public class MainView extends VerticalLayout implements Serializable {
 
-    private SecurityService securityService;
-
-    public MainView(@Autowired SecurityService securityService) {
-        this.securityService = securityService;
+    public MainView() {
         H1 logo = new H1("Vaadin CRM");
         logo.addClassName("logo");
-        HorizontalLayout header;
-        if (securityService.getAuthenticatedUser() != null) {
-            Button logout = new Button("Logout", click ->
-                    securityService.logout());
-            header = new HorizontalLayout(logo, logout);
-        } else {
-            header = new HorizontalLayout(logo);
-        }
-        add(header);
-
+        add(new HorizontalLayout(logo));
     }
 
 }

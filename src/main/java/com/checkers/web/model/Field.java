@@ -1,8 +1,9 @@
 package com.checkers.web.model;
 
+import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import lombok.Getter;
 import lombok.Setter;
+
 
 
 @Setter
@@ -17,9 +18,8 @@ public class Field extends VerticalLayout {
         this.row = row;
         this.color = color;
         setClassName(color);
-
-        setWidth("100");
-        setHeight("100");
+        setWidth(62, Unit.PIXELS);
+        setHeight(62, Unit.PIXELS);
     }
 
     public String getColor() {
