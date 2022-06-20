@@ -148,7 +148,6 @@ public class Controller {
         boolean response = false;
         for (Pawn checkingPawn : pawns) {
             if (checkBeatingForGivenPawn(checkingPawn)) {
-                //System.out.println("Pawn have sth to kill");
                 response = true;
             }
         }
