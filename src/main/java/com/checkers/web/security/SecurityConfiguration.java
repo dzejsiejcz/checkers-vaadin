@@ -39,7 +39,7 @@ public class SecurityConfiguration
     }
 
     /**
-     * Allows access to static resources, bypassing Spring security.
+     * Allows access to static resources, bypassing Spring security.=
      */
     @Override
     public void configure(WebSecurity web) throws Exception {
