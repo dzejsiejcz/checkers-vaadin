@@ -1,21 +1,39 @@
 package com.checkers.web.security;
 
+import com.checkers.web.service.CustomUserDetailsService;
 import com.checkers.web.views.LoginView;
 import com.vaadin.flow.spring.security.VaadinWebSecurityConfigurerAdapter;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
+
+import javax.annotation.Resource;
 
 @EnableWebSecurity
 @Configuration
 public class SecurityConfiguration
         extends VaadinWebSecurityConfigurerAdapter {
+
+    //@Resource(name = "authService")
+    @Autowired
+    private UserDetailsService userDetailsService;
+
+//    public SecurityConfiguration(UserDetailsService userDetailsService) {
+//        this.userDetailsService = userDetailsService;
+//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -30,6 +48,27 @@ public class SecurityConfiguration
         // here (the following is just an example):
 
         // http.rememberMe().alwaysRemember(false);
+
+
+//        http
+//                .csrf().disable()
+//                .authorizeRequests()
+//                .antMatchers("/game", "/")
+//                .hasAuthority("USER")
+//                .anyRequest()
+//                .authenticated()
+//                .and()
+//                .httpBasic();
+
+        http
+                .csrf().disable()
+                .exceptionHandling().authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login"))
+                .accessDeniedPage("/accessDenied")
+                .and().authorizeRequests()
+                .antMatchers("/VAADIN/**", "/PUSH/**", "/UIDL/**", "/error/**", "/accessDenied/**", "/vaadinServlet/**")
+                .permitAll();
+                //.antMatchers("/", "/game").fullyAuthenticated();
+
 
         super.configure(http);
 
@@ -58,19 +97,18 @@ public class SecurityConfiguration
      * in memory users and their roles.
      * NOTE: This should not be used in real world applications.
      */
+//    @Bean
+//    @Override
+//    public UserDetailsService userDetailsService(String username) {
+//
+//        return  new CustomUserDetailsService(username);
+//    }
     @Bean
-    @Override
-    public UserDetailsService userDetailsService() {
-        UserDetails user =
-                User.withUsername("user")
-                        .password("{noop}user")
-                        .roles("USER")
-                        .build();
-        UserDetails admin =
-                User.withUsername("admin")
-                        .password("{noop}admin")
-                        .roles("ADMIN")
-                        .build();
-        return new InMemoryUserDetailsManager(user, admin);
+    AuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(userDetailsService);
+        provider.setPasswordEncoder(new BCryptPasswordEncoder());
+        return provider;
     }
+
 }

@@ -175,9 +175,9 @@ public class Controller {
 
         if (isKilled) {
             if (type == WHITE) {
-                userRed.subtractOnePawn();
+                userTypeRed.subtractOnePawn();
             } else {
-                userWhite.subtractOnePawn();
+                userTypeWhite.subtractOnePawn();
             }
             if (checkBeatingForGivenPawn(pawn)) {
                 return additional;

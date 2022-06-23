@@ -1,11 +1,8 @@
 package com.checkers.web.model;
 
 import com.checkers.web.utils.PawnType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 
-public class User {
+public class UserType {
 
     private final String name;
     private boolean isBeating;
@@ -13,7 +10,7 @@ public class User {
 
     private final PawnType pawnType;
 
-    public User(String name, PawnType pawnType, boolean isBeating) {
+    public UserType(String name, PawnType pawnType, boolean isBeating) {
         this.name = name;
         this.isBeating = isBeating;
         this.pawnType = pawnType;
@@ -54,7 +51,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserType{" +
                 "name='" + name + '\'' +
                 ", isBeating=" + isBeating +
                 ", numbOfPawns=" + numbOfPawns +

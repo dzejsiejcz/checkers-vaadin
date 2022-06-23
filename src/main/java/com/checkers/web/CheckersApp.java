@@ -1,6 +1,7 @@
 package com.checkers.web;
 
 import com.vaadin.flow.component.page.Push;
+import com.vaadin.flow.spring.security.VaadinWebSecurityConfigurerAdapter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

@@ -5,7 +5,7 @@ import com.checkers.web.logic.StateOfGame;
 import com.checkers.web.logic.Turn;
 import com.checkers.web.model.Field;
 import com.checkers.web.model.Pawn;
-import com.checkers.web.model.User;
+import com.checkers.web.model.UserType;
 import com.checkers.web.utils.Constants;
 import com.checkers.web.utils.MoveType;
 import com.github.appreciated.css.grid.GridLayoutComponent;
@@ -17,7 +17,6 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.BoxSizing;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.server.auth.AnonymousAllowed;
 
 import javax.annotation.security.PermitAll;
 
@@ -34,8 +33,8 @@ import static com.checkers.web.utils.PawnType.WHITE;
 public class GameBoardView extends VerticalLayout {
 
 
-    public static User userRed = new User(Constants.reds, RED, false);
-    public static User userWhite = new User(Constants.whites, WHITE, false);
+    public static UserType userTypeRed = new UserType(Constants.reds, RED, false);
+    public static UserType userTypeWhite = new UserType(Constants.whites, WHITE, false);
     public static Field[][] fields = new Field[WIDTH][HEIGHT];
     public static Turn turn = new Turn();
     public static StateOfGame game = new StateOfGame();
