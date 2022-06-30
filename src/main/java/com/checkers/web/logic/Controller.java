@@ -27,10 +27,14 @@ public class Controller {
         int oldCol = pawn.getCol();
         int oldRow = pawn.getRow();
 
+        if (!quizResult.isAnswered()) {
+            return FORBIDDEN;
+        }
+
         /*
          * whose turn?
          */
-        if (turn.getType() != pawn.getType()) {
+        if (turn.getType() != pawn.getType() && !quizResult.isCorrectAnswered()) {
             return FORBIDDEN;
         }
 
@@ -170,8 +174,9 @@ public class Controller {
         return pawns;
     }
 
-    public static String doesMovementSummary(Pawn pawn, boolean isKilled) {
+    public static String movementSummary(Pawn pawn, boolean isKilled) {
         PawnType type = pawn.getType();
+
 
         if (isKilled) {
             if (type == WHITE) {
@@ -184,12 +189,20 @@ public class Controller {
             }
         }
 
+//        if (quizResult.isCorrectAnswered()) {
+//            quizResult.setCorrectAnswered(false);
+//            return additional;
+//        }
+
+
+
         String endResponse = game.whoWon();
 
         if (endResponse != null) {
             return endResponse;
         }
 
+        quizResult.setAnswered(false);
         return turn.switchTurn();
     }
 

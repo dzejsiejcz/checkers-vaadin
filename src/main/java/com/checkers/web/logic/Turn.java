@@ -29,11 +29,9 @@ public class Turn {
     public String switchTurn() {
         if (type == WHITE) {
             type = RED;
-            System.out.println("Red now");
             return userTypeRed.getName() + toMove;
         }
         type = WHITE;
-        System.out.println("White now");
         return userTypeWhite.getName() + toMove;
     }
 

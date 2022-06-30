@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8c8979c-1c5d-4ca5-90e7-38440b36595b" name="Changes" comment="login and register user - works">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/config/CoreConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/controller/QuizController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/domain/QuestionQuizDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/quiz/QuizClient.java" afterDir="false" />
+    <list default="true" id="f8c8979c-1c5d-4ca5-90e7-38440b36595b" name="Changes" comment="quiz api get questions-works">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/QuizResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/QuizComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/CheckersApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/CheckersApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/controller/QuizController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/controller/QuizController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/Turn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/Turn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/quiz/QuizClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/quiz/QuizClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/GameBoardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/GameBoardView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +143,7 @@
       <workItem from="1655570228573" duration="15240000" />
       <workItem from="1655831016835" duration="3604000" />
       <workItem from="1655839184164" duration="11019000" />
-      <workItem from="1656000479738" duration="19080000" />
+      <workItem from="1656000479738" duration="37083000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1653139496704</created>
@@ -225,7 +229,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656020443579</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="quiz api get questions-works">
+      <created>1656102791138</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1656102791138</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,7 +263,8 @@
     <MESSAGE value="logout" />
     <MESSAGE value="before preparing spring security" />
     <MESSAGE value="login and register user - works" />
-    <option name="LAST_COMMIT_MESSAGE" value="login and register user - works" />
+    <MESSAGE value="quiz api get questions-works" />
+    <option name="LAST_COMMIT_MESSAGE" value="quiz api get questions-works" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

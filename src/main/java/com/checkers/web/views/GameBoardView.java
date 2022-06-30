@@ -1,47 +1,51 @@
 package com.checkers.web.views;
 
 import com.checkers.web.logic.Controller;
+import com.checkers.web.logic.QuizResult;
 import com.checkers.web.logic.StateOfGame;
 import com.checkers.web.logic.Turn;
 import com.checkers.web.model.Field;
 import com.checkers.web.model.Pawn;
 import com.checkers.web.model.UserType;
+import com.checkers.web.quiz.QuizClient;
 import com.checkers.web.utils.Constants;
 import com.checkers.web.utils.MoveType;
 import com.github.appreciated.css.grid.GridLayoutComponent;
 import com.github.appreciated.layout.FluentGridLayout;
+import com.vaadin.flow.component.Text;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dnd.*;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.BoxSizing;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.router.Route;
 
 import javax.annotation.security.PermitAll;
 
-import static com.checkers.web.logic.Controller.doesMovementSummary;
+import static com.checkers.web.logic.Controller.movementSummary;
 import static com.checkers.web.utils.Constants.*;
 import static com.checkers.web.utils.PawnType.RED;
 import static com.checkers.web.utils.PawnType.WHITE;
 
 
 @Route(value = "game", layout = MainLayout.class)
-//@AnonymousAllowed
 @PermitAll
 @CssImport("./styles/styles.css")
 public class GameBoardView extends VerticalLayout {
-
 
     public static UserType userTypeRed = new UserType(Constants.reds, RED, false);
     public static UserType userTypeWhite = new UserType(Constants.whites, WHITE, false);
     public static Field[][] fields = new Field[WIDTH][HEIGHT];
     public static Turn turn = new Turn();
     public static StateOfGame game = new StateOfGame();
+    public static QuizResult quizResult = new QuizResult();
+    private final QuizClient quizClient;
 
-    public GameBoardView() {
-
-
+    public GameBoardView(QuizClient quizClient) {
+        this.quizClient = quizClient;
 
         FluentGridLayout layout = new FluentGridLayout()
                 .withPadding(true)
@@ -52,6 +56,21 @@ public class GameBoardView extends VerticalLayout {
         layout.withSpacing(false);
         add(layout);
 
+
+
+        QuizComponent quizComponent = new QuizComponent(quizClient);
+        buildBoardWithPawns(layout, quizComponent);
+        Button restartButton = new Button("Restart game");
+        restartButton.addClickListener(event -> {
+            buildBoardWithPawns(layout, quizComponent);
+            game = new StateOfGame();
+            turn = new Turn();
+            quizResult = new QuizResult();
+        });
+        add(restartButton, quizComponent);
+    }
+
+    private void buildBoardWithPawns(FluentGridLayout layout, QuizComponent quizComponent) {
         int pawnNumber = 0;
 
         //building board
@@ -112,14 +131,19 @@ public class GameBoardView extends VerticalLayout {
                         if (event.getDragSourceComponent().isPresent() && fieldNewParent.getComponentCount()==0) {
                             Pawn pawnDragged = (Pawn) event.getDragSourceComponent().get();
 
-                            MoveType moveType = Controller.INSTANCE.checkMove(pawnDragged, fieldNewParent.getRow(), fieldNewParent.getCol());
+                            MoveType moveType = Controller.INSTANCE.checkMove(pawnDragged, fieldNewParent.getRow(),
+                                    fieldNewParent.getCol());
                             if (moveType == MoveType.NORMAL) {
 
                                 move(pawnDragged, fieldNewParent);
-                                String resultOfMove = doesMovementSummary(pawnDragged, false);
+                                quizComponent.refreshQuestion(quizResult);
 
-                                System.out.println("destination field: "+ fieldNewParent.getRow() + fieldNewParent.getCol());
+                                String resultOfMove = movementSummary(pawnDragged, false);
+
+                                System.out.println("destination field: "+ fieldNewParent.getRow() +
+                                        fieldNewParent.getCol());
                                 System.out.println(resultOfMove);
+
 
                             } else if (moveType == MoveType.KILLING) {
 
@@ -129,8 +153,9 @@ public class GameBoardView extends VerticalLayout {
                                 Field beatingField = fields[neighborCol][neighborRow];
                                 beatingField.removeAll();
                                 move(pawnDragged, fieldNewParent);
+                                quizComponent.refreshQuestion(quizResult);
 
-                                String resultOfMove = doesMovementSummary(pawnDragged, true);
+                                String resultOfMove = movementSummary(pawnDragged, true);
                                 System.out.println(resultOfMove);
                             }
                         }
@@ -138,6 +163,7 @@ public class GameBoardView extends VerticalLayout {
                 }
             }
         }
+
     }
 
     private void move(Pawn pawnDragged, Field fieldNewParent) {
@@ -146,6 +172,8 @@ public class GameBoardView extends VerticalLayout {
         fieldNewParent.add(pawnDragged);
         pawnDragged.setCol(fieldNewParent.getCol());
         pawnDragged.setRow(fieldNewParent.getRow());
+
+
     }
 }
 
