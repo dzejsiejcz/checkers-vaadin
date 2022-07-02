@@ -18,10 +18,12 @@ import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dnd.*;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.BoxSizing;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.shared.ui.Transport;
 
 import javax.annotation.security.PermitAll;
 
@@ -56,8 +58,6 @@ public class GameBoardView extends VerticalLayout {
         layout.withSpacing(false);
         add(layout);
 
-
-
         QuizComponent quizComponent = new QuizComponent(quizClient);
         buildBoardWithPawns(layout, quizComponent);
         Button restartButton = new Button("Restart game");
@@ -66,6 +66,7 @@ public class GameBoardView extends VerticalLayout {
             game = new StateOfGame();
             turn = new Turn();
             quizResult = new QuizResult();
+            Notification restart = Notification.show("New Game");
         });
         add(restartButton, quizComponent);
     }
@@ -172,8 +173,6 @@ public class GameBoardView extends VerticalLayout {
         fieldNewParent.add(pawnDragged);
         pawnDragged.setCol(fieldNewParent.getCol());
         pawnDragged.setRow(fieldNewParent.getRow());
-
-
     }
 }
 

@@ -27,3 +27,12 @@
 .board {
     border: black solid;
 }
+
+.message-list {
+    overflow-y: scroll;
+    width: 100%;
+}
+
+.message-list p {
+    width: 100%;
+}

@@ -5,15 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8c8979c-1c5d-4ca5-90e7-38440b36595b" name="Changes" comment="quiz api get questions-works">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/QuizResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/QuizComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/utils/ChatMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/ChatView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/MessagesList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/styles/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/CheckersApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/CheckersApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/controller/QuizController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/controller/QuizController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/Turn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/Turn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/quiz/QuizClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/quiz/QuizClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/security/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/security/SecurityConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/GameBoardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/GameBoardView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/MainLayout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/MainLayout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,6 +106,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.checkers.web.views" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/icons" />
     </key>
@@ -143,7 +148,7 @@
       <workItem from="1655570228573" duration="15240000" />
       <workItem from="1655831016835" duration="3604000" />
       <workItem from="1655839184164" duration="11019000" />
-      <workItem from="1656000479738" duration="37083000" />
+      <workItem from="1656000479738" duration="53884000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1653139496704</created>
@@ -236,7 +241,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656102791138</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="quiz api get questions-works">
+      <created>1656617593752</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1656617593752</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -265,17 +277,6 @@
     <MESSAGE value="login and register user - works" />
     <MESSAGE value="quiz api get questions-works" />
     <option name="LAST_COMMIT_MESSAGE" value="quiz api get questions-works" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/checkers/web/service/CustomUserDetailsService.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="com.vaadin.designer2.intellij.settings.SizePresetsSettingsComponent">
     <option name="sizePresets">

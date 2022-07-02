@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.socket.AbstractSecurityWebSocketMessageBrokerConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -66,7 +67,9 @@ public class SecurityConfiguration
                 .accessDeniedPage("/accessDenied")
                 .and().authorizeRequests()
                 .antMatchers("/VAADIN/**", "/PUSH/**", "/UIDL/**", "/error/**", "/accessDenied/**", "/vaadinServlet/**")
-                .permitAll();
+                .permitAll()
+                        .and()
+                                .sessionManagement().sessionFixation().newSession();
                 //.antMatchers("/", "/game").fullyAuthenticated();
 
 
@@ -86,6 +89,8 @@ public class SecurityConfiguration
         web.ignoring().antMatchers(
                 "/icons/**"
         );
+
+
 
         // Delegating the ignoring configuration for Vaadin's
         // related static resources to the super class:
