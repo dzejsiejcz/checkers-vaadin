@@ -5,8 +5,7 @@ import com.checkers.web.utils.PawnType;
 import static com.checkers.web.utils.Constants.toMove;
 import static com.checkers.web.utils.PawnType.RED;
 import static com.checkers.web.utils.PawnType.WHITE;
-import static com.checkers.web.views.GameBoardView.userTypeRed;
-import static com.checkers.web.views.GameBoardView.userTypeWhite;
+import static com.checkers.web.views.GameBoardView.*;
 
 public class Turn {
 
@@ -29,6 +28,7 @@ public class Turn {
     public String switchTurn() {
         if (type == WHITE) {
             type = RED;
+            moveByComputer();
             return userTypeRed.getName() + toMove;
         }
         type = WHITE;
@@ -37,6 +37,10 @@ public class Turn {
 
     public void cleanRightToMove() {
         this.type = WHITE;
+    }
+
+    public boolean isComputerMove() {
+        return !type.equals(WHITE);
     }
 
     @Override

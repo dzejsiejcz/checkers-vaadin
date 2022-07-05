@@ -27,6 +27,8 @@ import com.vaadin.flow.shared.ui.Transport;
 
 import javax.annotation.security.PermitAll;
 
+import java.util.Random;
+
 import static com.checkers.web.logic.Controller.movementSummary;
 import static com.checkers.web.utils.Constants.*;
 import static com.checkers.web.utils.PawnType.RED;
@@ -34,13 +36,14 @@ import static com.checkers.web.utils.PawnType.WHITE;
 
 
 @Route(value = "game", layout = MainLayout.class)
-@PermitAll
 @CssImport("./styles/styles.css")
+@PermitAll
 public class GameBoardView extends VerticalLayout {
 
     public static UserType userTypeRed = new UserType(Constants.reds, RED, false);
     public static UserType userTypeWhite = new UserType(Constants.whites, WHITE, false);
     public static Field[][] fields = new Field[WIDTH][HEIGHT];
+    public static Pawn[][] pawns = new Pawn[WIDTH][HEIGHT];
     public static Turn turn = new Turn();
     public static StateOfGame game = new StateOfGame();
     public static QuizResult quizResult = new QuizResult();
@@ -69,6 +72,7 @@ public class GameBoardView extends VerticalLayout {
             Notification restart = Notification.show("New Game");
         });
         add(restartButton, quizComponent);
+
     }
 
     private void buildBoardWithPawns(FluentGridLayout layout, QuizComponent quizComponent) {
@@ -114,14 +118,14 @@ public class GameBoardView extends VerticalLayout {
                         event.setDragData(rowDragged+colDragged);
                         System.out.println("source field "+rowDragged+colDragged);
                     });
-
+                    pawns[col][row] = pawn;
                     field.add(pawn);
                 }
                 layout.withRowAndColumn(field, row+1, col+1);
             }
         }
 
-        //creating pawns
+        //creating moving of pawns
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
 
@@ -139,8 +143,7 @@ public class GameBoardView extends VerticalLayout {
                                 move(pawnDragged, fieldNewParent);
                                 quizComponent.refreshQuestion(quizResult);
 
-                                String resultOfMove = movementSummary(pawnDragged, false);
-
+                                String resultOfMove = movementSummary(pawnDragged, false, true);
                                 System.out.println("destination field: "+ fieldNewParent.getRow() +
                                         fieldNewParent.getCol());
                                 System.out.println(resultOfMove);
@@ -154,9 +157,9 @@ public class GameBoardView extends VerticalLayout {
                                 Field beatingField = fields[neighborCol][neighborRow];
                                 beatingField.removeAll();
                                 move(pawnDragged, fieldNewParent);
-                                quizComponent.refreshQuestion(quizResult);
+                                //quizComponent.refreshQuestion(quizResult);
 
-                                String resultOfMove = movementSummary(pawnDragged, true);
+                                String resultOfMove = movementSummary(pawnDragged, true, true);
                                 System.out.println(resultOfMove);
                             }
                         }
@@ -167,13 +170,71 @@ public class GameBoardView extends VerticalLayout {
 
     }
 
-    private void move(Pawn pawnDragged, Field fieldNewParent) {
+    public static void move(Pawn pawnDragged, Field fieldNewParent) {
         Field fieldOldParent = (Field) pawnDragged.getParent().get();
         fieldOldParent.remove(pawnDragged);
+        pawns[fieldOldParent.getCol()][fieldOldParent.getRow()] = null;
         fieldNewParent.add(pawnDragged);
         pawnDragged.setCol(fieldNewParent.getCol());
         pawnDragged.setRow(fieldNewParent.getRow());
+        pawns[fieldNewParent.getCol()][fieldNewParent.getRow()] = pawnDragged;
     }
+
+    public static String moveByComputer() {
+        Random random = new Random();
+        int trials = 0;
+
+        while (true) {
+            int randomCol = random.nextInt(8);
+            int randomRow = random.nextInt(8);
+
+            Pawn pawnDragged = GameBoardView.pawns[randomCol][randomRow];
+
+            if (pawnDragged != null && pawnDragged.getType().equals(RED)) {
+                System.out.println("checking for: " + pawnDragged.getNumber());
+                while (true) {
+                    int randColAfterMove = random.nextInt(5) - 2 + randomCol;
+                    int randRowAfterMove = random.nextInt(5) - 2 + randomRow;
+                    if (randColAfterMove >= 0 && randColAfterMove < 8) {
+                        if (randRowAfterMove >= 0 && randRowAfterMove < 8) {
+                            MoveType moveType = Controller.INSTANCE.checkMove(pawnDragged, randRowAfterMove, randColAfterMove);
+                            Field fieldNewParent = fields[randColAfterMove][randRowAfterMove];
+                            if (fieldNewParent.getComponentCount() == 0 && moveType == MoveType.NORMAL) {
+
+                                move(pawnDragged, fieldNewParent);
+
+                                String resultOfMove = movementSummary(pawnDragged, false, false);
+
+                                System.out.println("Computer moves to destination field: " + fieldNewParent.getRow() +
+                                        fieldNewParent.getCol());
+                                System.out.println(resultOfMove);
+                                return "The computer moved normally";
+
+                            } else if (fieldNewParent.getComponentCount() == 0 && moveType == MoveType.KILLING) {
+                                int neighborCol = (fieldNewParent.getCol() + pawnDragged.getCol()) / 2;
+                                int neighborRow = (fieldNewParent.getRow() + pawnDragged.getRow()) / 2;
+                                Field beatingField = fields[neighborCol][neighborRow];
+                                beatingField.removeAll();
+                                move(pawnDragged, fieldNewParent);
+
+                                String resultOfMove = movementSummary(pawnDragged, true, false);
+                                System.out.println(resultOfMove);
+                                System.out.println("The computer killed your pawn");
+                                break;
+                            } else {
+                                trials++;
+                                if (trials == 8) {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
 }
 
 

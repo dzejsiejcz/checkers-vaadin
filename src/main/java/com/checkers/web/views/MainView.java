@@ -1,6 +1,5 @@
 package com.checkers.web.views;
 
-import com.checkers.web.security.SecurityService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H1;
@@ -19,7 +18,6 @@ import java.io.Serializable;
 @Route(value = "", layout = MainLayout.class)
 @CssImport("./styles/shared-styles.css")
 @CssImport(value = "./styles/vaadin-text-field-styles.css", themeFor = "vaadin-text-field")
-//@AnonymousAllowed
 @PermitAll
 public class MainView extends VerticalLayout implements Serializable {
 

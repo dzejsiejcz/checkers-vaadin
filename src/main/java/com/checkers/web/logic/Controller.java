@@ -39,6 +39,13 @@ public class Controller {
         }
 
         /*
+         * don't move out of board
+         */
+        if (newCol < 0 || newRow < 0 || newCol >= WIDTH || newRow >= HEIGHT) {
+            return FORBIDDEN;
+        }
+
+        /*
          *  check possibility of beating, if possible, user must beat
          */
         Coordinates checkingFieldAfterBeat = new Coordinates(newRow, newCol);
@@ -68,7 +75,7 @@ public class Controller {
          *   normal movement if no beating, beating is obligatory
          */
         if (abs(deltaX) == 1 && abs(deltaY) == 1 && !checkBeatingOnEntireBoard(pawn.getType()) && game.isGame()) {
-            System.out.println("first checking");
+            System.out.println("normal move");
             return NORMAL;
         }
 
@@ -174,7 +181,7 @@ public class Controller {
         return pawns;
     }
 
-    public static String movementSummary(Pawn pawn, boolean isKilled) {
+    public static String movementSummary(Pawn pawn, boolean isKilled, boolean isHuman) {
         PawnType type = pawn.getType();
 
 
@@ -189,12 +196,6 @@ public class Controller {
             }
         }
 
-//        if (quizResult.isCorrectAnswered()) {
-//            quizResult.setCorrectAnswered(false);
-//            return additional;
-//        }
-
-
 
         String endResponse = game.whoWon();
 
@@ -202,8 +203,12 @@ public class Controller {
             return endResponse;
         }
 
-        quizResult.setAnswered(false);
-        return turn.switchTurn();
+        if (isHuman) {
+            quizResult.setAnswered(false);
+        }
+
+//        return turn.switchTurn();
+        return "ok";
     }
 
 }

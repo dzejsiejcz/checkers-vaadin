@@ -1,6 +1,5 @@
 package com.checkers.web.views;
 
-import com.checkers.web.security.SecurityConfiguration;
 import com.checkers.web.utils.ChatMessage;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
@@ -26,8 +25,8 @@ import reactor.core.publisher.UnicastProcessor;
 import javax.annotation.security.PermitAll;
 
 @Route(value = "chat", layout = MainLayout.class)
-@PermitAll
 @CssImport("./styles/styles.css")
+@PermitAll
 //@Push(value= PushMode.MANUAL, transport = Transport.WEBSOCKET_XHR)
 public class ChatView extends VerticalLayout {
 

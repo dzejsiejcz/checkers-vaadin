@@ -1,8 +1,12 @@
 package com.checkers.web.views;
 
 import com.checkers.web.domain.QuestionQuizDto;
+import com.checkers.web.logic.Controller;
 import com.checkers.web.logic.QuizResult;
+import com.checkers.web.model.Field;
+import com.checkers.web.model.Pawn;
 import com.checkers.web.quiz.QuizClient;
+import com.checkers.web.utils.MoveType;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.notification.Notification;
@@ -13,7 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static com.checkers.web.views.GameBoardView.turn;
+import static com.checkers.web.logic.Controller.movementSummary;
+import static com.checkers.web.utils.PawnType.RED;
+import static com.checkers.web.views.GameBoardView.*;
 
 public class QuizComponent extends VerticalLayout {
 
@@ -48,6 +54,8 @@ public class QuizComponent extends VerticalLayout {
                     quizResult.setAnswered(true);
                     quizResult.setCorrectAnswered(false);
                     removeAll();
+                    turn.switchTurn();
+
                 });
                 answers.add(answer);
                 j++;
@@ -56,7 +64,7 @@ public class QuizComponent extends VerticalLayout {
                 answer.addClickListener(event -> {
                     quizResult.setAnswered(true);
                     quizResult.setCorrectAnswered(true);
-                    turn.switchTurn();
+                    //turn.switchTurn();
                     Notification notification = Notification.show("Correct answer. You have an additional move");
                     removeAll();
                 });
@@ -82,4 +90,6 @@ public class QuizComponent extends VerticalLayout {
     public void setCorrectAnswerPosition(int correctAnswerPosition) {
         this.correctAnswerPosition = correctAnswerPosition;
     }
+
+
 }
