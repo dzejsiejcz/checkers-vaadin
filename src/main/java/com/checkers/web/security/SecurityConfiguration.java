@@ -19,13 +19,8 @@ import org.springframework.security.web.authentication.LoginUrlAuthenticationEnt
 public class SecurityConfiguration
         extends VaadinWebSecurityConfigurerAdapter {
 
-    //@Resource(name = "authService")
     @Autowired
     private UserDetailsService userDetailsService;
-
-//    public SecurityConfiguration(UserDetailsService userDetailsService) {
-//        this.userDetailsService = userDetailsService;
-//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -47,8 +42,6 @@ public class SecurityConfiguration
                 .and().authorizeRequests()
                 .antMatchers("/VAADIN/**", "/PUSH/**", "/UIDL/**", "/error/**", "/accessDenied/**", "/vaadinServlet/**")
                 .permitAll();
-        //.antMatchers("/", "/game").fullyAuthenticated();
-
 
         super.configure(http);
 
@@ -78,12 +71,6 @@ public class SecurityConfiguration
      * in memory users and their roles.
      * NOTE: This should not be used in real world applications.
      */
-//    @Bean
-//    @Override
-//    public UserDetailsService userDetailsService(String username) {
-//
-//        return  new CustomUserDetailsService(username);
-//    }
     @Bean
     AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();

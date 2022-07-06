@@ -1,72 +1,37 @@
-# Vaadin Gradle Skeleton Starter Spring Boot
+The basic rules of the game of checkers are:
 
-This project demos the possibility of having Vaadin project in npm+webpack mode using Gradle.
-Please see the [Starting a Vaadin project using Gradle](https://vaadin.com/docs/latest/guide/start/gradle) for the documentation.
+Playing on the dark squares of the checkers board
+White pawns start the game
+The goal is to capture all of your opponent's pieces
+The pieces only move forward one square diagonally
+The capture takes place diagonally by jumping over the opponent's pawn onto an empty field
+During one move with the same pawn you can capture more than one pawn
 
+The game ends in a draw when neither player can capture their opponent's piece
+Do you have to beat? - Yes!
+One of the most important rules of the game of checkers is the obligatory capture of opponent's pieces.
 
-Prerequisites:
-* Java 8 or higher
-* node.js and npm. Vaadin Gradle plugin will install those for you
-  automatically (handy for CI), or you can install it to your OS:
-  * Windows: [node.js Download site](https://nodejs.org/en/download/) - use the .msi 64-bit installer
-  * Linux: `sudo apt install npm`
-* Git
-* (Optionally): Intellij Community
+The application runs smoothly - a delay has been set for better readability of computer traffic. We play with the computer.
 
-## Vaadin Versions
+The game will be developed with additional functions: a database with records of results, a more extensive interface,
+save the game and return to it at another time.
 
-* The [v14](https://github.com/vaadin/base-starter-spring-gradle) branch (the default one)
-  contains the example app for Vaadin 14
-* The [master](https://github.com/vaadin/base-starter-spring-gradle/tree/master) branch
-  contains the example app for Vaadin 19
+------------------------------
 
-## Running With Spring Boot via Gradle In Development Mode
+Podstawowe zasady gry w warcaby to:
 
-Run the following command in this repo:
+Granie na ciemnych polach planszy do warcabów
+Białe pionki rozpoczynają grę
+Celem jest zbicie wszystkich pionków przeciwnika
+Piony poruszają się do przodu tylko o jedno pole po przekątnej
+Zbicie odbywa się po przekątnej przeskakując przez pionek przeciwnika na puste pole
+Podczas jednego ruchu tym samym pionkiem można zbić więcej niż jeden pion
 
-```bash
-./gradlew clean bootRun
-```
+Gra kończy się remisem, gdy żaden z graczy nie może zbić pionu przeciwnika
+Czy trzeba bić? – tak!
+Jedną z ważniejszych zasad gry w warcaby jest obligatoryjność zbijania pionków przeciwnika.
 
-Now you can open the [http://localhost:8080](http://localhost:8080) with your browser.
+Aplikacja działa płynnie - ustawiono opóźnienie dla lepszej czytelności ruchu komputera. Gramy z komputerem.
 
-## Running With Spring Boot from your IDE In Development Mode
-
-Run the following command in this repo, to create necessary Vaadin config files:
-
-```bash
-./gradlew clean vaadinPrepareFrontend
-```
-
-The `build/vaadin-generated/` folder will now contain proper configuration files.
-
-Open the `DemoApplication` class, and Run/Debug its main method from your IDE.
-
-Now you can open the [http://localhost:8080](http://localhost:8080) with your browser.
-
-## Building In Production Mode
-
-Run the following command in this repo:
-
-```bash
-./gradlew clean build -Pvaadin.productionMode
-```
-
-That will build this app in production mode as a runnable jar archive; please find the jar file in `build/libs/base-starter-spring-gradle*.jar`.
-You can run the JAR file with:
-
-```bash
-cd build/libs/
-java -jar base-starter-spring-gradle*.jar
-```
-
-Now you can open the [http://localhost:8080](http://localhost:8080) with your browser.
-
-### Building In Production On CI
-
-Usually the CI images will not have node.js+npm available. However, Vaadin Gradle Plugin will download it for you automatically, there is no need for you to do anything.
-To build your app for production in CI, just run:
-
-```bash
-./gradlew clean build -Pvaadin.productionMode
-```
+Gra jest będzie rozwijana o dodatkowe funkcjanolności: baza danych z zapisami wyników, bardziej rozbudowany interfejs,
+zapisywanie stanu gry i wracanie do niej w innym czasie.

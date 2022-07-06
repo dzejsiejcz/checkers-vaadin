@@ -4,18 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8c8979c-1c5d-4ca5-90e7-38440b36595b" name="Changes" comment="quiz api get questions-works">
+    <list default="true" id="f8c8979c-1c5d-4ca5-90e7-38440b36595b" name="Changes" comment="movement by the computer in progress">
+      <change afterPath="$PROJECT_DIR$/readMe.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/CheckersApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/CheckersApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/domain/QuestionQuizDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/domain/QuestionQuizDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/Turn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/Turn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/model/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/model/Pawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/QuizResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/Turn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/model/Field.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/model/Field.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/quiz/QuizClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/quiz/QuizClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/security/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/security/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/security/SecurityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/security/SecurityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/service/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/service/CustomUserDetailsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/ChatView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/ChatView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/GameBoardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/GameBoardView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/MainLayout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/MainLayout.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/MainView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/QuizComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/QuizComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/RegisterView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/RegisterView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +165,7 @@
       <workItem from="1656761204849" duration="2160000" />
       <workItem from="1656768496818" duration="1158000" />
       <workItem from="1656791392545" duration="36000" />
-      <workItem from="1657053780360" duration="6860000" />
+      <workItem from="1657053780360" duration="15671000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1653139496704</created>
@@ -267,7 +272,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656759495295</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="movement by the computer in progress">
+      <created>1657061307879</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1657061307879</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -295,7 +307,19 @@
     <MESSAGE value="before preparing spring security" />
     <MESSAGE value="login and register user - works" />
     <MESSAGE value="quiz api get questions-works" />
-    <option name="LAST_COMMIT_MESSAGE" value="quiz api get questions-works" />
+    <MESSAGE value="movement by the computer in progress" />
+    <option name="LAST_COMMIT_MESSAGE" value="movement by the computer in progress" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/checkers/web/views/GameBoardView.java</url>
+          <line>216</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.vaadin.designer2.intellij.settings.SizePresetsSettingsComponent">
     <option name="sizePresets">

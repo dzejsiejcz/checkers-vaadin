@@ -4,8 +4,6 @@ import com.vaadin.flow.component.Unit;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.Setter;
 
-
-
 @Setter
 public class Field extends VerticalLayout {
 

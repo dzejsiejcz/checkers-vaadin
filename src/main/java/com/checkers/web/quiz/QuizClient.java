@@ -1,7 +1,6 @@
 package com.checkers.web.quiz;
 
 import com.checkers.web.domain.QuestionQuizDto;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 

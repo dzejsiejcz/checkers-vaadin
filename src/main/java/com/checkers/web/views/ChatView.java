@@ -27,7 +27,6 @@ import javax.annotation.security.PermitAll;
 @Route(value = "chat", layout = MainLayout.class)
 @CssImport("./styles/styles.css")
 @PermitAll
-//@Push(value= PushMode.MANUAL, transport = Transport.WEBSOCKET_XHR)
 public class ChatView extends VerticalLayout {
 
     private UnicastProcessor<ChatMessage> publisher;
@@ -37,14 +36,6 @@ public class ChatView extends VerticalLayout {
     public ChatView(UnicastProcessor<ChatMessage> publisher, Flux<ChatMessage> messages) {
         this.publisher = publisher;
         this.messages = messages;
-//        Authentication authentication = securityContext.getAuthentication();
-//        if(authentication==null) {
-//            authentication = vaadinSec.getAuthentication();
-//        }
-//        if(authentication==null) {
-//            throw new RuntimeException("No authentication found!");
-//        }
-
 
         H1 header = new H1("Chat");
         add(header);

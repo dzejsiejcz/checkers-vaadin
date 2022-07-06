@@ -1,6 +1,5 @@
 package com.checkers.web.views;
 
-import com.checkers.web.domain.CustomUserDetails;
 import com.checkers.web.service.CustomUserDetailsService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
@@ -14,17 +13,12 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetailsService;
-
-import javax.annotation.Resource;
 
 @Route("register")
 @PageTitle("Register")
 @AnonymousAllowed
 public class RegisterView extends Composite {
 
-    //@Resource(name = "authService")
 
     private final CustomUserDetailsService userDetailsService;
 
