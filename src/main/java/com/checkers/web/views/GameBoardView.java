@@ -17,6 +17,7 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.BoxSizing;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
@@ -37,45 +38,76 @@ import static com.checkers.web.utils.PawnType.WHITE;
 @PermitAll
 public class GameBoardView extends VerticalLayout {
 
-    public static UserType userTypeRed = new UserType(Constants.reds, RED, false);
-    public static UserType userTypeWhite = new UserType(Constants.whites, WHITE, false);
+    public static UserType userTypeRed = new UserType(Constants.reds, RED, false, 3);
+    public static UserType userTypeWhite = new UserType(Constants.whites, WHITE, false, 3);
     public static Field[][] fields = new Field[WIDTH][HEIGHT];
     public static Pawn[][] pawns = new Pawn[WIDTH][HEIGHT];
     public static StateOfGame game = new StateOfGame();
     private final QuizClient quizClient;
+    private int rowsOfPawns = 3;
 
     private static List<int[]> possiblePawnMoves = buildArrayOfPossibleMoves();
 
     public GameBoardView(QuizClient quizClient) {
         this.quizClient = quizClient;
 
-        FluentGridLayout layout = new FluentGridLayout()
+        HorizontalLayout mainLayout = new HorizontalLayout();
+
+        FluentGridLayout boardLayout = new FluentGridLayout()
                 .withPadding(true)
                 .withSpacing(true)
                 .withOverflow(GridLayoutComponent.Overflow.VISIBLE);
-        layout.setClassName("board");
-        layout.setBoxSizing(BoxSizing.CONTENT_BOX);
-        layout.withSpacing(false);
-        add(layout);
+        boardLayout.setClassName("board");
+        boardLayout.setBoxSizing(BoxSizing.CONTENT_BOX);
+        boardLayout.withSpacing(false);
+
+        mainLayout.add(boardLayout, buildRightPanel());
+        add(mainLayout);
 
         QuizComponent quizComponent = new QuizComponent(quizClient);
-        buildBoardWithPawns(layout, quizComponent);
-        Button restartButton = new Button("Restart game");
-        restartButton.addClickListener(event -> {
-            buildBoardWithPawns(layout, quizComponent);
-            game = new StateOfGame();
-            Notification restart = Notification.show("New Game");
+        buildBoardWithPawns(boardLayout, quizComponent, 3);
+        Button makeNewTwelvePawnsBoard = new Button("Restart game");
+        makeNewTwelvePawnsBoard.addClickListener(event -> {
+            buildBoardWithPawns(boardLayout, quizComponent, 3);
+            Notification restart = Notification.show("New Game with 12 pawns");
         });
-        add(restartButton, quizComponent);
 
+        Button makeNewFourPawnsBoard = new Button("New Game with 4 pawns");
+        makeNewFourPawnsBoard.addClickListener(event -> {
+            buildBoardWithPawns(boardLayout, quizComponent, 1);
+            userTypeRed = new UserType(Constants.reds, RED, false, 1);
+            userTypeWhite = new UserType(Constants.whites, WHITE, false, 1);
+            Notification restart = Notification.show("New Game with 4 pawns");
+
+        });
+
+
+        add(makeNewTwelvePawnsBoard, makeNewFourPawnsBoard, quizComponent);
     }
 
-    private void buildBoardWithPawns(FluentGridLayout layout, QuizComponent quizComponent) {
+    private VerticalLayout buildRightPanel() {
+        VerticalLayout infos = new VerticalLayout();
+
+
+
+
+
+        return infos;
+    }
+
+    private void buildBoardWithPawns(FluentGridLayout layout, QuizComponent quizComponent, int rows) {
+        game = new StateOfGame();
+
         int pawnNumber = 0;
+        rowsOfPawns = rows;
+        int startLineForReds = 3 - rows;
+        int endLineForWhites = 4 + rows;
 
         //building board
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
+                fields[col][row] = null;
+                pawns[col][row] = null;
 
                 String color;
                 if ((col + row) % 2 != 0) {
@@ -98,10 +130,10 @@ public class GameBoardView extends VerticalLayout {
                     layout.withRowAndColumn(rowDescription, col + 1, 9);
                 }
 
-                if (row < 3 && ((col + row) % 2) != 0) {
+                if (row >= startLineForReds && row < 3 && ((col + row) % 2) != 0) {
                     pawn = new Pawn(col, row, RED, pawnNumber);
                 }
-                if (row > 4 && ((col + row) % 2) != 0) {
+                if (row <= endLineForWhites && row > 4 && ((col + row) % 2) != 0) {
                     pawn = new Pawn(col, row, WHITE, pawnNumber);
                     final int colDragged = col;
                     final int rowDragged = row;
@@ -139,7 +171,8 @@ public class GameBoardView extends VerticalLayout {
                                 quizComponent.refreshQuestion();
 
                                 String resultOfMove = movementSummary(pawnDragged, false, true);
-                                System.out.println("destination field: " + fieldNewParent.getRow() +
+                                Notification.show(resultOfMove);
+                                System.out.println("destination field: row: " + fieldNewParent.getRow() + " col: " +
                                         fieldNewParent.getCol());
                                 System.out.println(resultOfMove);
 
@@ -154,6 +187,7 @@ public class GameBoardView extends VerticalLayout {
                                 move(pawnDragged, fieldNewParent);
 
                                 String resultOfMove = movementSummary(pawnDragged, true, true);
+                                Notification.show(resultOfMove);
                                 System.out.println(resultOfMove);
                             }
                         }
@@ -201,9 +235,9 @@ public class GameBoardView extends VerticalLayout {
                                     move(pawnDragged, fieldNewParent);
 
                                     String resultOfMove = movementSummary(pawnDragged, false, false);
-
-                                    System.out.println("Computer moves to destination field: " + fieldNewParent.getRow() +
-                                            fieldNewParent.getCol());
+                                    Notification.show(resultOfMove);
+                                    System.out.println("Computer moves from source field: row: " + randomRow + " col: " + randomCol +
+                                            " to destination field: row: " + fieldNewParent.getRow() + " col: " + fieldNewParent.getCol());
                                     System.out.println(resultOfMove);
                                     return "The computer moved normally";
 
@@ -219,6 +253,7 @@ public class GameBoardView extends VerticalLayout {
 
                                     String resultOfMove = movementSummary(pawnDragged, true, false);
                                     System.out.println(resultOfMove);
+                                    Notification.show(resultOfMove);
                                     System.out.println("The computer killed your pawn");
                                     break;
                                 }

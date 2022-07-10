@@ -185,7 +185,6 @@ public class Controller {
             }
         }
 
-
         String endResponse = game.whoWon();
 
         if (endResponse != null) {

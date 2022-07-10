@@ -6,14 +6,15 @@ public class UserType {
 
     private final String name;
     private boolean isBeating;
-    private int numbOfPawns = 12;
+    private int numbOfPawns;
 
     private final PawnType pawnType;
 
-    public UserType(String name, PawnType pawnType, boolean isBeating) {
+    public UserType(String name, PawnType pawnType, boolean isBeating, int rows) {
         this.name = name;
         this.isBeating = isBeating;
         this.pawnType = pawnType;
+        this.numbOfPawns = rows * 4;
     }
 
     public void subtractOnePawn() {
