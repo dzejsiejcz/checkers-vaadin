@@ -2,17 +2,18 @@ package com.checkers.web.model;
 
 import com.checkers.web.utils.PawnType;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserType {
 
     private final String name;
-    private boolean isBeating;
     private int numbOfPawns;
-
     private final PawnType pawnType;
+    private final List<Pawn> pawnList = new ArrayList<>();
 
-    public UserType(String name, PawnType pawnType, boolean isBeating, int rows) {
+    public UserType(String name, PawnType pawnType, int rows) {
         this.name = name;
-        this.isBeating = isBeating;
         this.pawnType = pawnType;
         this.numbOfPawns = rows * 4;
     }
@@ -21,40 +22,30 @@ public class UserType {
         numbOfPawns--;
     }
 
-    public void cleanUp() {
-        isBeating = false;
-        numbOfPawns = 12;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public boolean isBeating() {
-        return isBeating;
-    }
-
-    public void setBeating(boolean beating) {
-        isBeating = beating;
     }
 
     public int getNumbOfPawns() {
         return numbOfPawns;
     }
 
-    public void setNumbOfPawns(int numbOfPawns) {
-        this.numbOfPawns = numbOfPawns;
+    public List<Pawn> getPawnList() {
+        return pawnList;
     }
 
-    public PawnType getPawnType() {
-        return pawnType;
+    public void addPawn(Pawn pawn) {
+        pawnList.add(pawn);
+    }
+
+    public void deletePawn(Pawn pawn) {
+        pawnList.remove(pawn);
     }
 
     @Override
     public String toString() {
         return "UserType{" +
                 "name='" + name + '\'' +
-                ", isBeating=" + isBeating +
                 ", numbOfPawns=" + numbOfPawns +
                 ", pawnType=" + pawnType +
                 '}';

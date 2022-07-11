@@ -28,19 +28,8 @@ public class Field extends VerticalLayout {
         return col;
     }
 
-    public void setCol(int col) {
-        this.col = col;
-    }
-
     public int getRow() {
         return row;
     }
 
-    public void setRow(int row) {
-        this.row = row;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
 }

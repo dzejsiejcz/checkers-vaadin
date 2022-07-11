@@ -6,6 +6,7 @@ import com.checkers.web.model.Field;
 import com.checkers.web.model.Pawn;
 import com.checkers.web.model.UserType;
 import com.checkers.web.quiz.QuizClient;
+import com.checkers.web.service.ScoreService;
 import com.checkers.web.utils.Constants;
 import com.checkers.web.utils.MoveType;
 import com.github.appreciated.css.grid.GridLayoutComponent;
@@ -24,8 +25,8 @@ import com.vaadin.flow.router.Route;
 import javax.annotation.security.PermitAll;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 import static com.checkers.web.logic.Controller.movementSummary;
 import static com.checkers.web.utils.Constants.*;
@@ -38,18 +39,19 @@ import static com.checkers.web.utils.PawnType.WHITE;
 @PermitAll
 public class GameBoardView extends VerticalLayout {
 
-    public static UserType userTypeRed = new UserType(Constants.reds, RED, false, 3);
-    public static UserType userTypeWhite = new UserType(Constants.whites, WHITE, false, 3);
+    public static UserType userTypeRed = new UserType(Constants.reds, RED, 3);
+    public static UserType userTypeWhite = new UserType(Constants.whites, WHITE, 3);
     public static Field[][] fields = new Field[WIDTH][HEIGHT];
-    public static Pawn[][] pawns = new Pawn[WIDTH][HEIGHT];
-    public static StateOfGame game = new StateOfGame();
-    private final QuizClient quizClient;
-    private int rowsOfPawns = 3;
+    public static StateOfGame game;
 
     private static List<int[]> possiblePawnMoves = buildArrayOfPossibleMoves();
 
-    public GameBoardView(QuizClient quizClient) {
-        this.quizClient = quizClient;
+    private final ScoreService scoreService;
+
+    public GameBoardView(QuizClient quizClient, ScoreService scoreService) {
+        this.scoreService = scoreService;
+
+        game = new StateOfGame(scoreService);
 
         HorizontalLayout mainLayout = new HorizontalLayout();
 
@@ -61,7 +63,7 @@ public class GameBoardView extends VerticalLayout {
         boardLayout.setBoxSizing(BoxSizing.CONTENT_BOX);
         boardLayout.withSpacing(false);
 
-        mainLayout.add(boardLayout, buildRightPanel());
+        mainLayout.add(boardLayout, new ScoresComponent());
         add(mainLayout);
 
         QuizComponent quizComponent = new QuizComponent(quizClient);
@@ -74,9 +76,9 @@ public class GameBoardView extends VerticalLayout {
 
         Button makeNewFourPawnsBoard = new Button("New Game with 4 pawns");
         makeNewFourPawnsBoard.addClickListener(event -> {
+            userTypeRed = new UserType(Constants.reds, RED, 1);
+            userTypeWhite = new UserType(Constants.whites, WHITE, 1);
             buildBoardWithPawns(boardLayout, quizComponent, 1);
-            userTypeRed = new UserType(Constants.reds, RED, false, 1);
-            userTypeWhite = new UserType(Constants.whites, WHITE, false, 1);
             Notification restart = Notification.show("New Game with 4 pawns");
 
         });
@@ -85,21 +87,10 @@ public class GameBoardView extends VerticalLayout {
         add(makeNewTwelvePawnsBoard, makeNewFourPawnsBoard, quizComponent);
     }
 
-    private VerticalLayout buildRightPanel() {
-        VerticalLayout infos = new VerticalLayout();
-
-
-
-
-
-        return infos;
-    }
-
     private void buildBoardWithPawns(FluentGridLayout layout, QuizComponent quizComponent, int rows) {
-        game = new StateOfGame();
+        game = new StateOfGame(scoreService);
 
         int pawnNumber = 0;
-        rowsOfPawns = rows;
         int startLineForReds = 3 - rows;
         int endLineForWhites = 4 + rows;
 
@@ -107,7 +98,6 @@ public class GameBoardView extends VerticalLayout {
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
                 fields[col][row] = null;
-                pawns[col][row] = null;
 
                 String color;
                 if ((col + row) % 2 != 0) {
@@ -132,9 +122,11 @@ public class GameBoardView extends VerticalLayout {
 
                 if (row >= startLineForReds && row < 3 && ((col + row) % 2) != 0) {
                     pawn = new Pawn(col, row, RED, pawnNumber);
+                    userTypeRed.addPawn(pawn);
                 }
                 if (row <= endLineForWhites && row > 4 && ((col + row) % 2) != 0) {
                     pawn = new Pawn(col, row, WHITE, pawnNumber);
+                    userTypeWhite.addPawn(pawn);
                     final int colDragged = col;
                     final int rowDragged = row;
                     DragSource<Div> pawnDragSource = DragSource.create(pawn);
@@ -145,7 +137,6 @@ public class GameBoardView extends VerticalLayout {
                 }
                 if (pawn != null) {
                     pawnNumber++;
-                    pawns[col][row] = pawn;
                     field.add(pawn);
                 }
                 layout.withRowAndColumn(field, row + 1, col + 1);
@@ -182,7 +173,9 @@ public class GameBoardView extends VerticalLayout {
                                 int neighborRow = (fieldNewParent.getRow() + pawnDragged.getRow()) / 2;
 
                                 Field beatingField = fields[neighborCol][neighborRow];
-                                pawns[neighborCol][neighborRow] = null;
+                                Pawn beatingPawn = (Pawn) beatingField.getComponentAt(0);
+
+                                userTypeRed.deletePawn(beatingPawn);
                                 beatingField.removeAll();
                                 move(pawnDragged, fieldNewParent);
 
@@ -195,85 +188,86 @@ public class GameBoardView extends VerticalLayout {
                 }
             }
         }
-
     }
 
     public static void move(Pawn pawnDragged, Field fieldNewParent) {
         Field fieldOldParent = (Field) pawnDragged.getParent().get();
         fieldOldParent.remove(pawnDragged);
-        pawns[fieldOldParent.getCol()][fieldOldParent.getRow()] = null;
         fieldNewParent.add(pawnDragged);
         pawnDragged.setCol(fieldNewParent.getCol());
         pawnDragged.setRow(fieldNewParent.getRow());
-        pawns[fieldNewParent.getCol()][fieldNewParent.getRow()] = pawnDragged;
     }
 
     public static String moveByComputer() throws InterruptedException {
-        Random random = new Random();
-        int trials = 0;
+        int randomCol;
+        int randomRow;
+        boolean isPossibleToMove = true;
+        while (isPossibleToMove) {
+            List<Pawn> redPawns = userTypeRed.getPawnList();
+            Collections.shuffle(redPawns);
+            main_loop: for (Pawn pawnDragged : redPawns) {
+                randomCol = pawnDragged.getCol();
+                randomRow = pawnDragged.getRow();
+                System.out.println("checking for: " + pawnDragged.getNumber());
+                Collections.shuffle(possiblePawnMoves);
+                for (int[] move : possiblePawnMoves) {
+                    int randomDeltaCol = move[0];
+                    int randomDeltaRow = move[1];
+                    int randColAfterMove = randomDeltaCol + randomCol;
+                    int randRowAfterMove = randomDeltaRow + randomRow;
+                    if (randColAfterMove >= 0 && randColAfterMove < 8) {
+                        if (randRowAfterMove >= 0 && randRowAfterMove < 8) {
+                            MoveType moveType = Controller.INSTANCE.checkMove(pawnDragged, randRowAfterMove, randColAfterMove);
+                            Field fieldNewParent = fields[randColAfterMove][randRowAfterMove];
+                            if (fieldNewParent.getComponentCount() == 0 && moveType == MoveType.NORMAL) {
+                                Thread.sleep(1000);
+                                move(pawnDragged, fieldNewParent);
 
-        while (true) {
-            int randomCol = random.nextInt(8);
-            int randomRow = random.nextInt(8);
+                                String resultOfMove = movementSummary(pawnDragged, false, false);
+                                Notification.show(resultOfMove);
+                                System.out.println("Computer moves from source field: row: " + randomRow + " col: " + randomCol +
+                                        " to destination field: row: " + fieldNewParent.getRow() + " col: " + fieldNewParent.getCol());
+                                System.out.println(resultOfMove);
+                                return "The computer moved normally";
 
-                Pawn pawnDragged = GameBoardView.pawns[randomCol][randomRow];
+                            } else if (fieldNewParent.getComponentCount() == 0 && moveType == MoveType.KILLING) {
+                                int neighborCol = (fieldNewParent.getCol() + pawnDragged.getCol()) / 2;
+                                int neighborRow = (fieldNewParent.getRow() + pawnDragged.getRow()) / 2;
+                                Field beatingField = fields[neighborCol][neighborRow];
+                                Pawn beatingPawn = (Pawn) beatingField.getComponentAt(0);
+                                beatingField.removeAll();
+                                userTypeWhite.deletePawn(beatingPawn);
 
-                if (pawnDragged != null && pawnDragged.getType().equals(RED)) {
-                    System.out.println("checking for: " + pawnDragged.getNumber());
-                    for (int[] move : possiblePawnMoves) {
-                        trials++;
-                        int randomDeltaCol = move[0];
-                        int randomDeltaRow = move[1];
-                        int randColAfterMove = randomDeltaCol + randomCol;
-                        int randRowAfterMove = randomDeltaRow + randomRow;
-                        if (randColAfterMove >= 0 && randColAfterMove < 8) {
-                            if (randRowAfterMove >= 0 && randRowAfterMove < 8) {
-                                MoveType moveType = Controller.INSTANCE.checkMove(pawnDragged, randRowAfterMove, randColAfterMove);
-                                Field fieldNewParent = fields[randColAfterMove][randRowAfterMove];
-                                if (fieldNewParent.getComponentCount() == 0 && moveType == MoveType.NORMAL) {
-                                    Thread.sleep(1000);
-                                    move(pawnDragged, fieldNewParent);
+                                Thread.sleep(1000);
+                                move(pawnDragged, fieldNewParent);
 
-                                    String resultOfMove = movementSummary(pawnDragged, false, false);
-                                    Notification.show(resultOfMove);
-                                    System.out.println("Computer moves from source field: row: " + randomRow + " col: " + randomCol +
-                                            " to destination field: row: " + fieldNewParent.getRow() + " col: " + fieldNewParent.getCol());
-                                    System.out.println(resultOfMove);
-                                    return "The computer moved normally";
-
-                                } else if (fieldNewParent.getComponentCount() == 0 && moveType == MoveType.KILLING) {
-                                    int neighborCol = (fieldNewParent.getCol() + pawnDragged.getCol()) / 2;
-                                    int neighborRow = (fieldNewParent.getRow() + pawnDragged.getRow()) / 2;
-                                    Field beatingField = fields[neighborCol][neighborRow];
-                                    beatingField.removeAll();
-
-                                    Thread.sleep(1000);
-                                    move(pawnDragged, fieldNewParent);
-                                    Thread.sleep(1000);
-
-                                    String resultOfMove = movementSummary(pawnDragged, true, false);
-                                    System.out.println(resultOfMove);
-                                    Notification.show(resultOfMove);
-                                    System.out.println("The computer killed your pawn");
-                                    break;
+                                String resultOfMove = movementSummary(pawnDragged, true, false);
+                                System.out.println(resultOfMove);
+                                Notification.show(resultOfMove);
+                                System.out.println("The computer killed your pawn");
+                                if (userTypeWhite.getPawnList().isEmpty()) {
+                                    return "Computer won";
                                 }
+                                break main_loop;
                             }
-                        }
-                        if (trials == 8) {
-                            break;
                         }
                     }
                 }
+                isPossibleToMove = false;
             }
+        }
+        return "It is impossible to move by the computer";
     }
 
     private static List<int[]> buildArrayOfPossibleMoves() {
-        List<int[]>moves=new ArrayList<>();
-        for (int i=-2; i<3; i++) {
-            for (int j=-2; j< 3; j++) {
-                if (i==j || i==(-j) ) {
-                    int [] array = {i, j};
-                    moves.add(array);
+        List<int[]> moves = new ArrayList<>();
+        for (int i = -2; i < 3; i++) {
+            for (int j = -2; j < 3; j++) {
+                if (i != 0 && j != 0) {
+                    if (i == j || i == (-j)) {
+                        int[] array = {i, j};
+                        moves.add(array);
+                    }
                 }
             }
         }

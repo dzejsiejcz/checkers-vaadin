@@ -13,9 +13,9 @@ import static com.checkers.web.views.GameBoardView.*;
 
 public class QuizComponent extends VerticalLayout {
 
-    private QuizClient quizClient;
+    private final QuizClient quizClient;
 
-    private H3 quizTitle = new H3("Answer this question to win an additional move");
+    private final H3 quizTitle = new H3("Answer this question to win an additional move");
     private QuestionQuizDto questionSet;
     private int correctAnswerPosition;
 
@@ -41,7 +41,7 @@ public class QuizComponent extends VerticalLayout {
                     Notification notification = Notification.show("Incorrect answer.");
                     removeAll();
                     try {
-                        moveByComputer();
+                        System.out.println(moveByComputer());
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }

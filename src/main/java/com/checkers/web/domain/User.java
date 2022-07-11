@@ -1,11 +1,18 @@
 package com.checkers.web.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -14,6 +21,14 @@ public class User {
     private String username;
     private String password;
     private String role;
+
+    @OneToMany(
+            targetEntity = Score.class,
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
+    )
+    private List<Score>scoreList = new ArrayList<>();
 
     public User() {
     }
@@ -54,6 +69,14 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public List<Score> getScoreList() {
+        return scoreList;
+    }
+
+    public void setScoreList(List<Score> scoreList) {
+        this.scoreList = scoreList;
     }
 
     @Override

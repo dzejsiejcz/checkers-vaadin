@@ -4,12 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8c8979c-1c5d-4ca5-90e7-38440b36595b" name="Changes" comment="ruchy komputera do lekkiej poprawy">
+    <list default="true" id="f8c8979c-1c5d-4ca5-90e7-38440b36595b" name="Changes" comment="saving Score entity">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/domain/Score.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/domain/Winner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/repository/ScoreRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/service/ScoreService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/domain/CustomUserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/domain/CustomUserDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/StateOfGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/StateOfGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/model/UserType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/model/UserType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/GameBoardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/GameBoardView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/QuizComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/QuizComponent.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +72,7 @@
       <map>
         <entry key="com.haulmont.jpb.jpaInspector" value="true" />
         <entry key="com.haulmont.jpb.jpaPalette" value="false" />
-        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
       </map>
     </option>
   </component>
@@ -156,7 +162,7 @@
       <workItem from="1656791392545" duration="36000" />
       <workItem from="1657053780360" duration="17239000" />
       <workItem from="1657303517804" duration="6569000" />
-      <workItem from="1657478547857" duration="2833000" />
+      <workItem from="1657478547857" duration="27386000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1653139496704</created>
@@ -277,7 +283,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657137796237</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="moves of a computer - ok">
+      <created>1657481815485</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1657481815486</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -307,7 +320,20 @@
     <MESSAGE value="quiz api get questions-works" />
     <MESSAGE value="movement by the computer in progress" />
     <MESSAGE value="ruchy komputera do lekkiej poprawy" />
-    <option name="LAST_COMMIT_MESSAGE" value="ruchy komputera do lekkiej poprawy" />
+    <MESSAGE value="moves of a computer - ok" />
+    <MESSAGE value="saving Score entity" />
+    <option name="LAST_COMMIT_MESSAGE" value="saving Score entity" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/checkers/web/logic/StateOfGame.java</url>
+          <line>101</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.vaadin.designer2.intellij.settings.SizePresetsSettingsComponent">
     <option name="sizePresets">
