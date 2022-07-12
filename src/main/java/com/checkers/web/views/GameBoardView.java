@@ -202,7 +202,7 @@ public class GameBoardView extends HorizontalLayout {
     public static String moveByComputer() throws InterruptedException {
         int randomCol;
         int randomRow;
-        boolean isPossibleNextMove = true;
+        boolean isPossibleNextMove;
         do {
             isPossibleNextMove = false;
             List<Pawn> redPawns = userTypeRed.getPawnList();
@@ -225,7 +225,7 @@ public class GameBoardView extends HorizontalLayout {
                             String resultOfMove = movementSummary(pawnDragged, false, false);
                             Notification.show(resultOfMove);
                             System.out.println("Computer moves from source field: row: " + randomRow + " col: " + randomCol +
-                                    " to destination field: row: " + fieldNewParent.getRow() + " col: " + fieldNewParent.getCol());
+                                    " to destination field: row: " + randRowAfterMove + " col: " + randColAfterMove);
                             System.out.println(resultOfMove);
                             return "The computer moved normally";
 
