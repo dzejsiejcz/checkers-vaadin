@@ -81,11 +81,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "UserType{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
-                '}';
+        return username;
     }
 }

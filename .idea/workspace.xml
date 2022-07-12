@@ -5,17 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8c8979c-1c5d-4ca5-90e7-38440b36595b" name="Changes" comment="saving Score entity">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/domain/Score.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/domain/Winner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/repository/ScoreRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/service/ScoreService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/domain/CustomUserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/domain/CustomUserDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/domain/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/domain/Score.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/StateOfGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/logic/StateOfGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/model/UserType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/model/UserType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/repository/ScoreRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/repository/ScoreRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/service/ScoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/service/ScoreService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/GameBoardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/GameBoardView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/QuizComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/QuizComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/ScoresComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/checkers/web/views/ScoresComponent.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +158,7 @@
       <workItem from="1656791392545" duration="36000" />
       <workItem from="1657053780360" duration="17239000" />
       <workItem from="1657303517804" duration="6569000" />
-      <workItem from="1657478547857" duration="27386000" />
+      <workItem from="1657478547857" duration="42391000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1653139496704</created>
@@ -290,7 +286,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657481815486</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="saving Score entity">
+      <created>1657567211751</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1657567211751</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

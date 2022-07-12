@@ -8,6 +8,9 @@ import com.checkers.web.repository.UserRepository;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
+
 @Service
 public class ScoreService {
 
@@ -29,6 +32,10 @@ public class ScoreService {
         } else {
             throw new UsernameNotFoundException("UserType not found");
         }
+    }
+
+    public List<Score> findAllOrderByAdvantage(){
+        return scoreRepository.findAllByOrderByAdvantageDesc();
     }
 
 }

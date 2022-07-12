@@ -1,5 +1,6 @@
 package com.checkers.web.views;
 
+import com.checkers.web.domain.Score;
 import com.checkers.web.logic.Controller;
 import com.checkers.web.logic.StateOfGame;
 import com.checkers.web.model.Field;
@@ -14,6 +15,7 @@ import com.github.appreciated.layout.FluentGridLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dnd.*;
+import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.notification.Notification;
@@ -37,13 +39,12 @@ import static com.checkers.web.utils.PawnType.WHITE;
 @Route(value = "game", layout = MainLayout.class)
 @CssImport("./styles/styles.css")
 @PermitAll
-public class GameBoardView extends VerticalLayout {
+public class GameBoardView extends HorizontalLayout {
 
     public static UserType userTypeRed = new UserType(Constants.reds, RED, 3);
     public static UserType userTypeWhite = new UserType(Constants.whites, WHITE, 3);
     public static Field[][] fields = new Field[WIDTH][HEIGHT];
     public static StateOfGame game;
-
     private static List<int[]> possiblePawnMoves = buildArrayOfPossibleMoves();
 
     private final ScoreService scoreService;
@@ -53,7 +54,7 @@ public class GameBoardView extends VerticalLayout {
 
         game = new StateOfGame(scoreService);
 
-        HorizontalLayout mainLayout = new HorizontalLayout();
+        VerticalLayout mainLayout = new VerticalLayout();
 
         FluentGridLayout boardLayout = new FluentGridLayout()
                 .withPadding(true)
@@ -62,9 +63,6 @@ public class GameBoardView extends VerticalLayout {
         boardLayout.setClassName("board");
         boardLayout.setBoxSizing(BoxSizing.CONTENT_BOX);
         boardLayout.withSpacing(false);
-
-        mainLayout.add(boardLayout, new ScoresComponent());
-        add(mainLayout);
 
         QuizComponent quizComponent = new QuizComponent(quizClient);
         buildBoardWithPawns(boardLayout, quizComponent, 3);
@@ -83,8 +81,11 @@ public class GameBoardView extends VerticalLayout {
 
         });
 
+        mainLayout.add(boardLayout, makeNewTwelvePawnsBoard,
+                makeNewFourPawnsBoard, quizComponent);
+        VerticalLayout score = new ScoresComponent(scoreService);
 
-        add(makeNewTwelvePawnsBoard, makeNewFourPawnsBoard, quizComponent);
+        add(mainLayout, score);
     }
 
     private void buildBoardWithPawns(FluentGridLayout layout, QuizComponent quizComponent, int rows) {
@@ -202,10 +203,10 @@ public class GameBoardView extends VerticalLayout {
         int randomCol;
         int randomRow;
         boolean isPossibleToMove = true;
-        while (isPossibleToMove) {
+        main_loop: while (isPossibleToMove) {
             List<Pawn> redPawns = userTypeRed.getPawnList();
             Collections.shuffle(redPawns);
-            main_loop: for (Pawn pawnDragged : redPawns) {
+            for (Pawn pawnDragged : redPawns) {
                 randomCol = pawnDragged.getCol();
                 randomRow = pawnDragged.getRow();
                 System.out.println("checking for: " + pawnDragged.getNumber());
