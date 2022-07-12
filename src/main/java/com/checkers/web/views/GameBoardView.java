@@ -202,8 +202,9 @@ public class GameBoardView extends HorizontalLayout {
     public static String moveByComputer() throws InterruptedException {
         int randomCol;
         int randomRow;
-        boolean isPossibleToMove = true;
-        main_loop: while (isPossibleToMove) {
+        boolean isPossibleNextMove = true;
+        do {
+            isPossibleNextMove = false;
             List<Pawn> redPawns = userTypeRed.getPawnList();
             Collections.shuffle(redPawns);
             for (Pawn pawnDragged : redPawns) {
@@ -249,14 +250,13 @@ public class GameBoardView extends HorizontalLayout {
                                 if (userTypeWhite.getPawnList().isEmpty()) {
                                     return "Computer won";
                                 }
-                                break main_loop;
+                                isPossibleNextMove = true;
                             }
                         }
                     }
                 }
-                isPossibleToMove = false;
             }
-        }
+        } while (isPossibleNextMove);
         return "It is impossible to move by the computer";
     }
 
