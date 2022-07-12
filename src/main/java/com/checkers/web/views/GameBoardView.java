@@ -213,45 +213,40 @@ public class GameBoardView extends HorizontalLayout {
                 System.out.println("checking for: " + pawnDragged.getNumber());
                 Collections.shuffle(possiblePawnMoves);
                 for (int[] move : possiblePawnMoves) {
-                    int randomDeltaCol = move[0];
-                    int randomDeltaRow = move[1];
-                    int randColAfterMove = randomDeltaCol + randomCol;
-                    int randRowAfterMove = randomDeltaRow + randomRow;
-                    if (randColAfterMove >= 0 && randColAfterMove < 8) {
-                        if (randRowAfterMove >= 0 && randRowAfterMove < 8) {
-                            MoveType moveType = Controller.INSTANCE.checkMove(pawnDragged, randRowAfterMove, randColAfterMove);
-                            Field fieldNewParent = fields[randColAfterMove][randRowAfterMove];
-                            if (fieldNewParent.getComponentCount() == 0 && moveType == MoveType.NORMAL) {
-                                Thread.sleep(1000);
-                                move(pawnDragged, fieldNewParent);
+                    int randColAfterMove = move[0] + randomCol;
+                    int randRowAfterMove = move[1] + randomRow;
+                    if (randColAfterMove >= 0 && randColAfterMove < 8 && randRowAfterMove >= 0 && randRowAfterMove < 8) {
+                        MoveType moveType = Controller.INSTANCE.checkMove(pawnDragged, randRowAfterMove, randColAfterMove);
+                        Field fieldNewParent = fields[randColAfterMove][randRowAfterMove];
+                        if (fieldNewParent.getComponentCount() == 0 && moveType == MoveType.NORMAL) {
+                            Thread.sleep(1000);
+                            move(pawnDragged, fieldNewParent);
 
-                                String resultOfMove = movementSummary(pawnDragged, false, false);
-                                Notification.show(resultOfMove);
-                                System.out.println("Computer moves from source field: row: " + randomRow + " col: " + randomCol +
-                                        " to destination field: row: " + fieldNewParent.getRow() + " col: " + fieldNewParent.getCol());
-                                System.out.println(resultOfMove);
-                                return "The computer moved normally";
+                            String resultOfMove = movementSummary(pawnDragged, false, false);
+                            Notification.show(resultOfMove);
+                            System.out.println("Computer moves from source field: row: " + randomRow + " col: " + randomCol +
+                                    " to destination field: row: " + fieldNewParent.getRow() + " col: " + fieldNewParent.getCol());
+                            System.out.println(resultOfMove);
+                            return "The computer moved normally";
 
-                            } else if (fieldNewParent.getComponentCount() == 0 && moveType == MoveType.KILLING) {
-                                int neighborCol = (fieldNewParent.getCol() + pawnDragged.getCol()) / 2;
-                                int neighborRow = (fieldNewParent.getRow() + pawnDragged.getRow()) / 2;
-                                Field beatingField = fields[neighborCol][neighborRow];
-                                Pawn beatingPawn = (Pawn) beatingField.getComponentAt(0);
-                                beatingField.removeAll();
-                                userTypeWhite.deletePawn(beatingPawn);
+                        } else if (fieldNewParent.getComponentCount() == 0 && moveType == MoveType.KILLING) {
+                            int neighborCol = (randColAfterMove + randomCol) / 2;
+                            int neighborRow = (randRowAfterMove + randomRow) / 2;
+                            Field beatingField = fields[neighborCol][neighborRow];
+                            Pawn beatingPawn = (Pawn) beatingField.getComponentAt(0);
+                            beatingField.removeAll();
+                            userTypeWhite.deletePawn(beatingPawn);
 
-                                Thread.sleep(1000);
-                                move(pawnDragged, fieldNewParent);
+                            move(pawnDragged, fieldNewParent);
 
-                                String resultOfMove = movementSummary(pawnDragged, true, false);
-                                System.out.println(resultOfMove);
-                                Notification.show(resultOfMove);
-                                System.out.println("The computer killed your pawn");
-                                if (userTypeWhite.getPawnList().isEmpty()) {
-                                    return "Computer won";
-                                }
-                                isPossibleNextMove = true;
+                            String resultOfMove = movementSummary(pawnDragged, true, false);
+                            System.out.println(resultOfMove);
+                            Notification.show(resultOfMove);
+                            System.out.println("The computer killed your pawn");
+                            if (userTypeWhite.getPawnList().isEmpty()) {
+                                return "Computer won";
                             }
+                            isPossibleNextMove = true;
                         }
                     }
                 }
