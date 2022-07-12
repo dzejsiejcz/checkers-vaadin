@@ -1,3 +1,11 @@
+![checkers-vaadin-spring](https://user-images.githubusercontent.com/67972266/178507697-a7d5eb8f-bc07-4b5a-8cd9-582ca3719825.png)
+
+The application runs smoothly - a delay has been set for better readability of computer traffic. We play with the computer. 
+The game is played without changing a pawn to a queen.
+For variety, the player can make additional pawn moves after the correct answer in the Quiz (REST API).
+
+The game will be developed with additional functions: a database with records of results, a more extensive interface,
+save the game and return to it at another time.
 The basic rules of the game of checkers are:
 
 Playing on the dark squares of the checkers board
@@ -11,12 +19,14 @@ The game ends in a draw when neither player can capture their opponent's piece
 Do you have to beat? - Yes!
 One of the most important rules of the game of checkers is the obligatory capture of opponent's pieces.
 
-The application runs smoothly - a delay has been set for better readability of computer traffic. We play with the computer.
 
-The game will be developed with additional functions: a database with records of results, a more extensive interface,
-save the game and return to it at another time.
 
 ------------------------------
+Aplikacja działa płynnie - ustawiono opóźnienie dla lepszej czytelności ruchu komputera. Gramy z komputerem. Rozgrywka bez zmiany pionka na damę.
+Dla urozmaicenia gracz może wykonać dodatkowych ruch pionkiem po prawidłowej odpowiedzi w Quizie (REST API).
+
+Gra jest będzie rozwijana o dodatkowe funkcjanolności: baza danych z zapisami wyników, bardziej rozbudowany interfejs,
+zapisywanie stanu gry i wracanie do niej w innym czasie.
 
 Podstawowe zasady gry w warcaby to:
 
@@ -30,8 +40,3 @@ Podczas jednego ruchu tym samym pionkiem można zbić więcej niż jeden pion
 Gra kończy się remisem, gdy żaden z graczy nie może zbić pionu przeciwnika
 Czy trzeba bić? – tak!
 Jedną z ważniejszych zasad gry w warcaby jest obligatoryjność zbijania pionków przeciwnika.
-
-Aplikacja działa płynnie - ustawiono opóźnienie dla lepszej czytelności ruchu komputera. Gramy z komputerem.
-
-Gra jest będzie rozwijana o dodatkowe funkcjanolności: baza danych z zapisami wyników, bardziej rozbudowany interfejs,
-zapisywanie stanu gry i wracanie do niej w innym czasie.
