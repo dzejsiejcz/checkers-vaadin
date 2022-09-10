@@ -24,6 +24,10 @@ repositories {
 	maven { setUrl("https://maven.vaadin.com/vaadin-addons") }
 }
 
+jar {
+	enabled = false
+}
+
 configurations {
 	developmentOnly
 	runtimeClasspath {
@@ -55,6 +59,8 @@ dependencies {
 	// https://mvnrepository.com/artifact/io.projectreactor/reactor-core
 	implementation group: 'io.projectreactor', name: 'reactor-core', version: '3.4.19'
 
+	// https://mvnrepository.com/artifact/org.postgresql/postgresql
+	runtimeOnly group: 'org.postgresql', name: 'postgresql', version: '42.5.0'
 }
 
 dependencyManagement {
