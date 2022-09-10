@@ -10,9 +10,10 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
 	id 'com.vaadin'
+	id 'war'
 }
 
-defaultTasks("clean", "build")
+defaultTasks("clean","vaadinBuildFrontend", "build")
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
@@ -61,6 +62,14 @@ dependencies {
 
 	// https://mvnrepository.com/artifact/org.postgresql/postgresql
 	runtimeOnly group: 'org.postgresql', name: 'postgresql', version: '42.5.0'
+
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-tomcat
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: '2.7.3'
+
+	providedCompile "javax.servlet:javax.servlet-api:3.1.0"
+
+	implementation "com.vaadin:vaadin-core:23.0.5"
+
 }
 
 dependencyManagement {
@@ -78,5 +87,7 @@ test {
 // for more configuration options please see: https://vaadin.com/docs/latest/guide/start/gradle/#all-options
 vaadin {
 	pnpmEnable = true
+	optimizeBundle = false
+	productionMode = true
 }
 targetCompatibility = JavaVersion.VERSION_11
