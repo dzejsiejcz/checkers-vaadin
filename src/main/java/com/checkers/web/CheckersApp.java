@@ -11,7 +11,8 @@ import reactor.core.publisher.UnicastProcessor;
 
 
 @SpringBootApplication
-public class CheckersApp extends SpringBootServletInitializer {
+//public class CheckersApp extends SpringBootServletInitializer {
+public class CheckersApp {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CheckersApp.class, args);
@@ -27,10 +28,10 @@ public class CheckersApp extends SpringBootServletInitializer {
 		return publisher.replay(30).autoConnect();
 	}
 
-	@Override
-	protected SpringApplicationBuilder configure(
-			SpringApplicationBuilder application) {
-		return application.sources(CheckersApp.class);
-	}
+//	@Override
+//	protected SpringApplicationBuilder configure(
+//			SpringApplicationBuilder application) {
+//		return application.sources(CheckersApp.class);
+//	}
 
 }
