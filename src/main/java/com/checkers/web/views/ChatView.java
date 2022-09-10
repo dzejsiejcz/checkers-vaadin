@@ -75,7 +75,7 @@ public class ChatView extends VerticalLayout {
         layout.add(messageField, sendButton);
         layout.expand(messageField);
 
-        sendButton.addClickListener(clisk -> {
+        sendButton.addClickListener(click -> {
            publisher.onNext(new ChatMessage(username, messageField.getValue()));
            messageField.clear();
            messageField.focus();

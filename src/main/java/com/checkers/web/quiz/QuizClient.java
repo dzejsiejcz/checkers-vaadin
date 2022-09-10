@@ -1,6 +1,7 @@
 package com.checkers.web.quiz;
 
 import com.checkers.web.domain.QuestionQuizDto;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -9,12 +10,11 @@ import java.util.*;
 @Component
 public class QuizClient {
 
-    public static final String URL_FOR_20_QUESTS = "https://the-trivia-api.com/api/questions?categories=food" +
-            "_and_drink,music,geography,science,general_knowledge,society" +
-            "_and_culture&limit=20&region=PL&difficulty=easy";
-    public static final String URL_FOR_1_QUEST = "https://the-trivia-api.com/api/questions?categories=" +
-            "food_and_drink,music,geography,science,general_knowledge," +
-            "society_and_culture&limit=1&region=PL&difficulty=easy";
+    @Value("${spring.application.api.quiz.20quest}")
+    private String URL_FOR_20_QUESTS;
+
+    @Value("${spring.application.api.quiz.1quest}")
+    private String URL_FOR_1_QUEST;
 
     private final RestTemplate restTemplate;
 

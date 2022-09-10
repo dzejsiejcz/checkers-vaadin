@@ -1,6 +1,5 @@
 package com.checkers.web.views;
 
-import com.checkers.web.domain.Score;
 import com.checkers.web.logic.Controller;
 import com.checkers.web.logic.StateOfGame;
 import com.checkers.web.model.Field;
@@ -15,7 +14,6 @@ import com.github.appreciated.layout.FluentGridLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dnd.*;
-import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.notification.Notification;
