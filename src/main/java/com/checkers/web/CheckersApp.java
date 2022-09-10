@@ -3,6 +3,7 @@ package com.checkers.web;
 import com.checkers.web.utils.ChatMessage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import reactor.core.publisher.Flux;
@@ -10,7 +11,7 @@ import reactor.core.publisher.UnicastProcessor;
 
 
 @SpringBootApplication
-public class CheckersApp {
+public class CheckersApp extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CheckersApp.class, args);
@@ -24,6 +25,12 @@ public class CheckersApp {
 	@Bean
 	Flux<ChatMessage> messages(UnicastProcessor<ChatMessage> publisher) {
 		return publisher.replay(30).autoConnect();
+	}
+
+	@Override
+	protected SpringApplicationBuilder configure(
+			SpringApplicationBuilder application) {
+		return application.sources(CheckersApp.class);
 	}
 
 }
