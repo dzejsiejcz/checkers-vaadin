@@ -31,6 +31,7 @@ public class QuizComponent extends VerticalLayout {
         Random random = new Random();
         correctAnswerPosition = random.nextInt(4);
         System.out.println(correctAnswerPosition);
+        userTypeWhite.setAnswered(false);
         int j = 0;
         VerticalLayout answers = new VerticalLayout();
         for (int i = 0; i<4; i++) {
@@ -38,7 +39,8 @@ public class QuizComponent extends VerticalLayout {
             if (i != correctAnswerPosition) {
                 answer.setText(questionSet.getIncorrectAnswers().get(j));
                 answer.addClickListener(event -> {
-                    Notification notification = Notification.show("Incorrect answer.");
+                    Notification.show("Incorrect answer.");
+                    userTypeWhite.setAnswered(true);
                     removeAll();
                     try {
                         System.out.println(moveByComputer());
@@ -51,7 +53,8 @@ public class QuizComponent extends VerticalLayout {
             } else {
                 answer.setText(questionSet.getCorrectAnswer());
                 answer.addClickListener(event -> {
-                    Notification notification = Notification.show("Correct answer. You have an additional move");
+                    Notification.show("Correct answer. You have an additional move");
+                    userTypeWhite.setAnswered(true);
                     removeAll();
                 });
                 answers.add(answer);

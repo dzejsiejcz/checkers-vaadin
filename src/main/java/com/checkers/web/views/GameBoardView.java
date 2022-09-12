@@ -43,7 +43,7 @@ public class GameBoardView extends HorizontalLayout {
     public static UserType userTypeWhite = new UserType(Constants.whites, WHITE, 3);
     public static Field[][] fields = new Field[WIDTH][HEIGHT];
     public static StateOfGame game;
-    private static List<int[]> possiblePawnMoves = buildArrayOfPossibleMoves();
+    private static final List<int[]> possiblePawnMoves = buildArrayOfPossibleMoves();
 
     private final ScoreService scoreService;
 
@@ -156,7 +156,6 @@ public class GameBoardView extends HorizontalLayout {
                             MoveType moveType = Controller.INSTANCE.checkMove(pawnDragged, fieldNewParent.getRow(),
                                     fieldNewParent.getCol());
                             if (moveType == MoveType.NORMAL) {
-
                                 move(pawnDragged, fieldNewParent);
                                 quizComponent.refreshQuestion();
 

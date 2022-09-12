@@ -11,6 +11,7 @@ public class UserType {
     private int numbOfPawns;
     private final PawnType pawnType;
     private final List<Pawn> pawnList = new ArrayList<>();
+    private boolean isAnswered = true;
 
     public UserType(String name, PawnType pawnType, int rows) {
         this.name = name;
@@ -40,6 +41,14 @@ public class UserType {
 
     public void deletePawn(Pawn pawn) {
         pawnList.remove(pawn);
+    }
+
+    public boolean isAnswered() {
+        return isAnswered;
+    }
+
+    public void setAnswered(boolean answered) {
+        isAnswered = answered;
     }
 
     @Override

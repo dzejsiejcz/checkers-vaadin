@@ -27,6 +27,10 @@ public class Controller {
         int oldCol = pawn.getCol();
         int oldRow = pawn.getRow();
 
+        if (pawn.getType() == WHITE && !userTypeWhite.isAnswered()) {
+            return FORBIDDEN;
+        }
+
         /*
          * don't move out of board
          */
