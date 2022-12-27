@@ -53,7 +53,7 @@ public class QuizComponent extends VerticalLayout {
             } else {
                 answer.setText(questionSet.getCorrectAnswer());
                 answer.addClickListener(event -> {
-                    Notification.show("Correct answer. Do an additional move");
+                    Notification.show("Correct answer. You have one additional move");
                     userTypeWhite.setAnswered(true);
                     removeAll();
                 });
