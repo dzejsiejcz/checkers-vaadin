@@ -45,7 +45,7 @@ public class MainLayout extends AppLayout {
         }
     }
 
-    // some changes
+    // some changes new changes
     private H1 viewTitle;
 
     public MainLayout(@Autowired SecurityService securityService) {
