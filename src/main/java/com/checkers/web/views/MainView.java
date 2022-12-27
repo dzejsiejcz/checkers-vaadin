@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class MainView extends VerticalLayout implements Serializable {
 
     public MainView() {
-        H1 logo = new H1("Vaadin CRM");
+        H1 logo = new H1("Vaadin CRM - first change");
         logo.addClassName("logo");
         add(new HorizontalLayout(logo));
     }
